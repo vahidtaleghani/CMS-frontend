@@ -1,0 +1,75 @@
+.loginContainer{
+  min-height: 100%;
+  max-height: max-content;
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+  background-color: #F6F6F6;
+  margin: 0;
+  padding: 0;
+  min-width: fit-content;
+}
+
+.CMSLabel{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-style: normal;
+  font-weight: 100;
+  font-size: 58px;
+  line-height: 54px;
+  text-align: center;
+  color: #4F4D4D;
+}
+.loginTitle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 40px;
+  color: #434242;
+}
+
+input.form-control{
+    height: calc(2em + .7rem + 2px);
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .3rem;
+    background: #F0F0F0;
+    border-color: #F0F0F0;
+}
+
+input.form-control::placeholder {
+  color: #A4A0A0;
+}
+
+label, label>input{
+  margin: 0;
+  padding: 0;
+  padding-left: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #A4A0A0;
+}
+
+mat-card{
+  height: 350px;
+}
+button{
+  background-color: #8CB323; 
+  color: #292929;
+  border: #8CB323;
+  width: 90pt;
+  display: block;
+  margin: auto;
+  font-size: 14px;
+}

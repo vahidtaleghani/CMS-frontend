@@ -1,0 +1,168 @@
+<div class="container " ng-app="" ngForm #myForm="ngForm" (ngSubmit)="submit(myForm)" novalidate>
+
+    <div fxLayout="column">
+        <div fxLayout="row">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/contract">{{'new-contract.title' | translate}}</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{'new-contract.general-information.title' | translate}}</li>
+            </ol>
+          </nav>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start" fxLayout.sm="column" fxLayout.xs="column" class="my-2">
+      
+            <div fxFlex="24">
+                <label for="contractType" class="col-form-label">{{'new-contract.general-information.contract-type' | translate}}</label> 
+            </div>
+            
+            <div fxFlex="24">
+                <select class="form-select" aria-label="contractType" name="contractTypeId"
+                [(ngModel)]="info !== undefined && info.ContractTypeId" required name="contractTypeId">
+
+                    <option [selected]="info === undefined" disabled>{{'new-contract.general-information.type' | translate}}</option>
+                    <option *ngFor="let type of contractType" [value]="type.Type" [selected]="info !== undefined && info.ContractTypeId === type.Type">
+                        {{type.Type}}
+                    </option>
+                  </select>
+            </div>
+            
+            <div fxFlex="36" fxHide.sm="true"></div>
+            <div fxFlex="16">
+                <select class="form-select" aria-label="contractStatus" name="contractStatusId"
+                [(ngModel)]="info !== undefined && info.ContractStatusId" required name="contractStatusId">
+                >
+                    <option [selected]="info === undefined" disabled>{{'new-contract.general-information.status' | translate}}</option>
+                    <option *ngFor="let status of contractStatus" [value]="status.Status" [selected]="info !== undefined && info.ContractStatusId === status.Status">
+                        {{status.Status}}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center" fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxLayout.sm="column" fxLayout.xs="column" class="my-2">
+            <div fxFlex="24" >
+                <label class="col-md-3 col-form-label col-form-label-sm">{{'new-contract.general-information.limited' | translate}}</label> 
+            </div>
+
+            <div fxFlex="9" fxFlex.md = "12">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="isTemporary" id="temporary" value="true" [checked]="info !== undefined && info.IsTemporary === 'true'"
+                    [(ngModel)]="info !== undefined && info.IsTemporary" required name="isTemporary"
+                    >
+                <label class="form-check-label" for="temporary">{{'YNoptions.yes' | translate }}</label>
+                </div>
+            </div>
+
+            <div fxFlex="9" fxFlex.md = "12">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="isTemporary" id="permanent" value="false" [checked]="info !== undefined && info.IsTemporary === 'false'"
+                    [(ngModel)]="info !== undefined && info.IsTemporary" required name="isTemporary"
+                    >
+                    <label class="form-check-label" for="permanent">{{'YNoptions.no' | translate }}</label>
+                </div>
+            </div>
+
+            <div fxFlex="15" fxFlex.md = "20">
+                <input placeholder="{{'new-contract.general-information.start-date' | translate}}" class="form-control" type="text" onfocus="(this.type='date')" id="startDate" [value]="(info !== undefined) ? info.StartDate : ''"
+                name="startDate" [(ngModel)]="info !== undefined && info.StartDate" required name="startDate"
+                >
+            </div>
+
+            <div fxFlex="15" fxFlex.md = "20">
+                <input placeholder="{{'new-contract.general-information.end-date' | translate}}" class="form-control" type="text" onfocus="(this.type='date')" id="endDate" [value]="(info !== undefined) ? info.EndDate : ''"
+               name="endDate" [(ngModel)]="info !== undefined && info.EndDate" required name="endDate"
+                >
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center" fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxLayout.sm="column" fxLayout.xs="column" class="my-2">
+            <div fxFlex="24" >
+                <label class="col-md-3 col-form-label col-form-label-sm">{{'new-contract.general-information.termination-period' | translate}}</label> 
+            </div>
+
+            <div fxFlex="9" fxFlex.md = "12">
+                <div class="form-check ">
+                    <input class="form-check-input" type="radio" name="terminationPeriod" id="absolut" value="absolut" [(ngModel)]="terminationPeriod" [checked]="info !== undefined && info.TerminationPeriod === 'absolut'"
+                    [(ngModel)]="info !== undefined && info.TerminationPeriod" required name="terminationPeriod"
+                    >
+                <label class="form-check-label" for="absolut">{{'new-contract.general-information.absolute' | translate}}</label>
+                </div>
+            </div>
+
+            <div fxFlex="9" fxFlex.md = "12">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="terminationPeriod" id="relative" value="relative" [(ngModel)]="terminationPeriod" [checked]="info !== undefined && info.TerminationPeriod === 'relative'"
+                    [(ngModel)]="info !== undefined && info.TerminationPeriod" required name="terminationPeriod">
+                    <label class="form-check-label" for="relative" >{{'new-contract.general-information.relative' | translate}}</label>
+                </div>
+            </div>
+
+            <div fxFlex="15" fxFlex.md = "20">
+                <input *ngIf="terminationPeriod == 'absolut'" 
+                placeholder="{{'new-contract.general-information.date/months' | translate}}" class="form-control" type="text" onfocus="(this.type='date')" id="terminationDate" [value]="(info !== undefined) ? info.ExpDate : ''"
+                name="expDate"  [(ngModel)]="info !== undefined && info.ExpDate" required name="expDate">
+                <input *ngIf="terminationPeriod == 'relative'"
+                placeholder="{{'new-contract.general-information.date/months' | translate}}" class="form-control" type="text" onfocus="(this.type='number')"  min="1" id="months" [value]="(info !== undefined) ? info.ExpDate : ''"
+                name="expDate" [(ngModel)]="info !== undefined && info.ExpDate" required name="expDate">
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center" fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxLayout.sm="column" fxLayout.xs="column" class="my-2">
+            <div fxFlex="24" >
+                <label class="col-form-label">{{'new-contract.general-information.project-reference' | translate}}</label> 
+            </div>
+
+            <div fxFlex="9" fxFlex.md = "12">
+                <div class="form-check ">
+                    <input class="form-check-input" type="radio" name="isReferencedToAnotherProject" id="projectReferenceY" value="true" [(ngModel)]="projectReference"  [checked]="info !== undefined && info.IsReferencedToAnotherProject === 'true'"
+                    [(ngModel)]="info !== undefined && info.IsReferencedToAnotherProject" required name="isReferencedToAnotherProject">
+                <label class="form-check-label" for="projectReferenceY">{{'YNoptions.yes' | translate }}</label>
+                </div>
+            </div>
+
+            <div fxFlex="9" fxFlex.md = "12">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="isReferencedToAnotherProject" id="projectReferenceN" value="false" [(ngModel)]="projectReference"  [checked]="info !== undefined && info.IsReferencedToAnotherProject === 'false'"
+                    [(ngModel)]="info !== undefined && info.IsReferencedToAnotherProject" required name="isReferencedToAnotherProject">
+                    <label class="form-check-label" for="projectReferenceN">{{'YNoptions.no' | translate }}</label>
+                </div>
+            </div>
+
+                <div fxFlex="15" fxFlex.md = "20" *ngIf="projectReference == 'true'">
+                <input placeholder="{{'new-contract.general-information.project-id' | translate}}" class="form-control" type="text"  id="projectId" [value]="(info !== undefined) ? info.ProjectId : ''"
+                name="projectId" [(ngModel)]="info !== undefined && info.ProjectId" required name="projectId">
+            </div>
+            <div fxFlex="15" fxFlex.md = "20" *ngIf="projectReference == 'true'">
+                <input placeholder="{{'new-contract.general-information.project-name' | translate}}" class="form-control" type="text"  id="projectName" [value]="(info !== undefined) ? info.ProjectName : ''"
+                name="projectName" [(ngModel)]="info !== undefined && info.ProjectName" required name="projectName"
+                >
+            </div>
+        
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start" fxLayout.sm="column" fxLayout.xs="column" class="my-2">
+            <div fxFlex="75.5" fxFlex.md="93.5">
+                <textarea id="w3review" name="comment" class="form-control" placeholder="{{'comment' | translate }}"
+                [value]="(info !== undefined) ? info.Comment : ''" 
+                [(ngModel)]="info !== undefined && info.Comment" required name="comment"
+                ></textarea>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div fxLayout="column-reverse" class="btn-row">
+    <div fxLayout="row" fxLayoutGap="" fxLayoutAlign="end"  fxLayoutAlign.sm="end end" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10px">
+      <div fxFlex="80"  > </div>
+      <div fxFlex="20" >
+        <button type="submit" (click)="submit(myForm)"  class="btn">{{'next-button' | translate}}</button>
+      </div>
+    </div>
+  </div>
+      
+
+
+
+

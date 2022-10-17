@@ -1,0 +1,106 @@
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Claim, PaymentPeriod } from './models/claim';
+import { ClaimService } from './services/claim.service';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-claim',
+  templateUrl: './claim.component.html',
+  styleUrls: ['./claim.component.css']
+})
+
+export class ClaimComponent implements OnInit {
+  public claims: Claim[] = [];
+  public claim: Claim;
+
+  displayedColumns: string[] = ['date', 'monthly', 'quarterly', 'annually', 'edit'];
+
+  getTotalCost(paymentPeriodId: string) {
+    return this.claims.filter(c => c.PaymentPeriodId === paymentPeriodId).map(c => c.Cost).reduce((acc, value) => acc + value, 0);
+  }
+
+  constructor(private service: ClaimService,private router: Router) {
+
+    this.claim = this.clearFormInputArea();
+    this.getAllClaims();
+  }
+
+  ngOnInit(): void {
+  }
+
+  getAllClaims() {
+    const data = this.service.getLiabilites().subscribe(res => {
+      this.claims = res;
+
+      for (let index = 0; index < this.claims.length; index++) {
+        const paymentPeriodId = this.claims[index]['PaymentPeriodId'];
+        this.claims[index]['PaymentPeriodId'] = PaymentPeriod[paymentPeriodId];
+      }
+      console.log(this.claims);
+    });
+  }
+
+  getclaimById(id: number): Claim {
+    return this.claims.filter(x => x.Id === id)[0];
+  }
+
+  getLastAddedclaim(): Claim {
+
+    if (this.claims.length == 0) {
+      return new Claim(0, "", "", 0);
+    }
+
+    return this.claims[this.claims.length - 1];
+  }
+
+  clearFormInputArea(): Claim {
+    return new Claim(0, "", "", Number(""));
+  }
+
+  hasFormFilledProperly(claimForm: NgForm): boolean {
+    let values = new Array();
+
+    Object.entries(claimForm.value).forEach(([key, value]) => values.push(value));
+
+    if (values.includes("")) {
+      return false;
+    }
+    return true;
+  }
+
+  submit(claimForm: NgForm) {
+
+    if (this.hasFormFilledProperly(claimForm)) {
+      claimForm.value['id'] = this.claim.Id;
+
+      if (claimForm.value['paymentPeriodId'] === "Annually" || claimForm.value['paymentPeriodId'] === "Quarterly"
+        || claimForm.value['paymentPeriodId'] === "Monthly") {
+
+        claimForm.value['paymentPeriodId'] = PaymentPeriod[claimForm.value['paymentPeriodId']];
+      }
+      const createclaimResponse = this.service.createClaim(claimForm.value).subscribe((responseData) => {
+        this.getAllClaims();
+      });
+    }
+    else {
+      alert("error");
+    }
+
+  }
+
+  edit(id: number) {
+    this.claim = this.getclaimById(id);
+  }
+
+  deleteById(id: number) {
+  }
+  //##############################
+  gotoNextPage(){
+    this.router.navigate(['contract/affected-department']); 
+  }
+  gotoLastPage(){
+    this.router.navigate(['contract/liability']); 
+  }
+
+}

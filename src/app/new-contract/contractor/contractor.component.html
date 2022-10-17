@@ -1,0 +1,196 @@
+<div class="container " ng-app="" ngForm #myForm="ngForm" (ngSubmit)="submit(myForm)" novalidate>
+  <div fxLayout="column">
+    <div fxLayout="row">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/contract">Neuer Vertrag</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Vertragspartner</li>
+        </ol>
+      </nav>
+    </div>
+
+
+    <div fxLayout="row" fxLayoutGap="19px" fxLayoutAlign="start" fxLayout.sm="column" fxLayout.xs="column">
+
+
+      <div fxFlex="37" fxFlex.md="30">
+        <input type="text" class="form-control" placeholder="Firmennamen" aria-label="companyname"
+        [value]="contractPartner !== undefined && contractPartner.CompanyName"
+        [ngModel]="contractPartner !== undefined && contractPartner.CompanyName" required name="companyName"
+        >
+      </div>
+
+
+      <div fxFlex="37" fxFlex.md="30">
+        <input type="text" class="form-control" placeholder="Ansprechperson" aria-label="contactperson"
+        [value]="contractPartner !== undefined && contractPartner.Person"
+        [ngModel]="contractPartner !== undefined && contractPartner.Person" required name="person"
+        >
+      </div>
+
+
+      <div fxFlex="19" fxFlex.md="30">
+        <input type="text" class="form-control" placeholder="Firmenbuchnummer" aria-label="registernumber"
+        [value]="contractPartner !== undefined && contractPartner.CompanyRegistrationNumber"
+        [ngModel]="contractPartner !== undefined && contractPartner.CompanyRegistrationNumber" required name="companyRegistrationNumber"
+        >
+      </div>
+
+      <div fxFlex="19" fxFlex.md="30">
+        <input type="text" class="form-control" placeholder="Abteilung" aria-label="department"
+        [value]="contractPartner !== undefined && contractPartner.Department"
+        [ngModel]="contractPartner !== undefined && contractPartner.Department" required name="department"
+        >
+      </div>
+
+
+      <div fxFlex="19">
+        <button type="submit" (click)="submit(myForm)" class="btn ">Speichern</button>
+        </div>
+    </div>
+  </div>
+
+
+
+
+  <div fxLayout="row" class="row align-items-center" fxLayoutGap="19px" fxLayoutAlign="start center" fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxLayout.sm="column" fxLayout.xs="column" class="my-2">
+ 
+    <div fxFlex="39" fxFlex.md="47">
+        <input type="search" class="form-control" id="search" placeholder="Straße" aria-label="street"
+        [value]="contractPartner !== undefined && contractPartner.Address.Street"
+        [ngModel]="contractPartner !== undefined && contractPartner.Address.Street" required name="street"
+        >
+      </div>
+
+      <div fxFlex="8" fxFlex.md="30">
+        <input type="text" class="form-control" placeholder="Hausnr." aria-label="homenumber"
+        [value]="contractPartner !== undefined && contractPartner.Address.HouseNumber"
+        [ngModel]="contractPartner !== undefined && contractPartner.Address.HouseNumber" required name="houseNumber"
+        >
+      </div>
+
+      <div fxFlex="9" fxFlex.md="30">
+        <input type="text" class="form-control" placeholder="PLZ" aria-label="district"
+        [value]="contractPartner !== undefined && contractPartner.Address.PostalCode"
+        [ngModel]="contractPartner !== undefined && contractPartner.Address.PostalCode" required name="postalCode"
+        >
+      </div>
+
+      <div fxFlex="19" fxFlex.md="30">
+        <input type="text" class="form-control" placeholder="Stadt" aria-label="city"
+        [value]="contractPartner !== undefined && contractPartner.Address.City"
+        [ngModel]="contractPartner !== undefined && contractPartner.Address.City" required name="city"
+        >
+      </div>
+
+  </div>
+
+
+  <div fxLayout="row" class="row align-items-center" fxLayoutGap="13px" fxLayoutAlign="start center" fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxLayout.sm="column" fxLayout.xs="column" class="my-2">
+ 
+    <div fxFlex="19" fxFlex.md="30">
+      <input type="email" class="form-control" placeholder="E-Mail" aria-label="email"
+      [value]="contractPartner !== undefined && contractPartner.Email"
+      [ngModel]="contractPartner !== undefined && contractPartner.Email" required name="email"
+      >
+    </div>
+
+
+    <div fxFlex="19" fxFlex.md="30">
+      <input type="text" class="form-control" placeholder="Tl.nr." aria-label="telnumber"
+      [value]="contractPartner !== undefined && contractPartner.TelNumber"
+      [ngModel]="contractPartner !== undefined && contractPartner.TelNumber" required name="telNumber"
+      >
+    </div>
+   
+  </div>
+
+
+
+
+
+  <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start">
+    <div fxFlex="100">
+      <table mat-table [dataSource]="contractPartners" class="mat-elevation-z8">
+        
+        <!-- contactperson Column -->
+        <ng-container matColumnDef="contactperson">
+          <th mat-header-cell *matHeaderCellDef>Ansprechperson</th>
+          <td mat-cell *matCellDef="let element"> {{element.Person}}</td>
+        </ng-container>
+
+        <!-- registernumber Column -->
+        <ng-container matColumnDef="registernumber">
+          <th mat-header-cell *matHeaderCellDef>Firmenbuchnummer</th>
+          <td mat-cell *matCellDef="let element"> {{element.CompanyRegistrationNumber}} </td>
+        </ng-container>
+
+        <!-- department Column -->
+        <ng-container matColumnDef="department">
+          <th mat-header-cell *matHeaderCellDef>Abteilung</th>
+          <td mat-cell *matCellDef="let element"> {{element.Department}} </td>
+        </ng-container>
+
+         <!-- street Column -->
+         <ng-container matColumnDef="street">
+          <th mat-header-cell *matHeaderCellDef>Straße</th>
+          <td mat-cell *matCellDef="let element"> {{element.Address.Street}} </td>
+        </ng-container>
+
+         <!-- homenumber Column -->
+         <ng-container matColumnDef="homenumber">
+          <th mat-header-cell *matHeaderCellDef>Hausnr.</th>
+          <td mat-cell *matCellDef="let element"> {{element.Address.HouseNumber}} </td>
+        </ng-container>
+         
+
+         <!-- district Column -->
+         <ng-container matColumnDef="district">
+          <th mat-header-cell *matHeaderCellDef>PLZ</th>
+          <td mat-cell *matCellDef="let element"> {{element.Address.PostalCode}} </td>
+        </ng-container>
+         
+
+         <!-- city Column -->
+         <ng-container matColumnDef="city">
+          <th mat-header-cell *matHeaderCellDef>Stadt</th>
+          <td mat-cell *matCellDef="let element"> {{element.Address.City}} </td>
+        </ng-container>
+
+      
+        <!-- Edit Column -->
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <span>
+              <mat-icon type="button" (click)="edit(element.Id)">edit</mat-icon>
+              <mat-icon type="button" (click)="deleteById(element.Id)">delete</mat-icon>
+            </span>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; let even = odd; columns: displayedColumns;" [ngClass]="{gray: even}"></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div fxLayout="column-reverse" class="btn-row">
+  <div fxLayout="row" fxLayoutGap="" fxLayoutAlign="end" fxLayoutAlign.sm="end end" fxLayout.sm="column"
+    fxLayout.xs="column" fxLayoutGap="10px">
+    <div fxFlex="73" fxFlex.md="61" fxFlex.sm="0" fxFlex.xs="0"> </div>
+    <div fxFlex="7" fxFlex.md="19" fxFlex.sm="50" fxFlex.xs="24">
+      <button type="button" class="btn return-btn" (click)="gotoLastPage()">Zurück</button>
+    </div>
+    <div fxFlex="20" fxFlex.sm="40">
+      <button type="button" class="btn" (click)="gotoNextPage()">Weiter</button>
+    </div>
+  </div>
+</div>
+      
+     
+        
+
+
+          
+      

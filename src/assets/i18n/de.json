@@ -1,0 +1,74 @@
+{
+    "menu": {
+        "contracts": "Verträge",
+        "text": "This is a simple demonstration app for ngx-translate"
+    },
+    "new-contract":{
+        "title": "Neuer Vertrag",
+        "general-information": {
+            "title": "Allgemeine Info",
+            "contract-type": "Vertragstyp",
+            "limited": "Befristet",
+            "type": "Typ",
+            "status": "Status",
+            "start-date": "Startdatum",
+            "end-date": "Enddatum",
+            "termination-period": "Kundigungfrist",
+            "absolute": "Absolut",
+            "relative": "Relativ",
+            "date/months": "Datum/Monaten",
+            "project-reference": "Projektbezug",
+            "project-id": "Projekt ID",
+            "project-name": "Projektname"
+        },
+        "affected-department":{
+            "title": "Betroffene Abteilung",
+            "select-department": "Abteilung auswählen"
+        },
+        "claim":{
+            "title": "Forderung",
+            "due-date": "Fälligkeitsdatum"
+        },
+        "comments":{
+            "title": "Kommentare",
+            "comment":"Kommentar"
+        },
+        "files":{
+            "title": "Vertragsdatei",
+            "final": "Final"
+        },
+        "signed" :{
+            "title": "Unterzeichnet", 
+            "name": "Name",
+            "last-name": "Nachname",
+            "signed": "Unterzeichnet",
+            "fully-signed": "Vollständig unterzeichnet"
+        }, 
+        "contractor": "Vertragspartner",
+        "liability": "Verbindkichkeit"
+    },
+    "YNoptions" :{
+        "yes": "Ja",
+        "no": "Nein"
+    },
+    "comment": "Kommentar",
+    "next-button": "Weiter",
+    "back-button": "Zurück",
+    "save-button" : "Speichern",
+    "price-in-euro": "Preis in Euro",
+    "table":{
+        "department": "Abteilung",
+        "date": "Datum",
+        "total": "Summe",
+        "comment": "Kommentar",
+        "person": "Person",
+        "file-name": "Dateiname",
+        "name": "Name",
+        "last-name":"Nachname"
+    },
+    "payment-period":{
+        "annualy": "Järlich",
+        "quarterly":"Quartal",
+        "monthly": "Monatlich"
+    }
+}

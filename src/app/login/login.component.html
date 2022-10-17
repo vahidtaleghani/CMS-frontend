@@ -1,0 +1,39 @@
+<div class="loginContainer" ng-app="" fxLayout="column" >
+    <div fxLayout="row"  fxLayoutAlign="center">
+      <div fxFlex="50"  class="CMSLabel" fxHide.sm fxHide.xs>
+      <p>Contract</p>
+      <p>Management</p>
+      <p>System</p>
+      </div>
+    <div fxFlex="50" fxFlex.sm="70" fxFlex.xs="70" fxLayoutAlign="start" >
+      <div fxFlex="15" fxHide.sm fxHide.xs></div>
+      <mat-card fxFlex="60" fxFlex.sm="0" fxFlex.xs="0" fxLayout="column" fxLayoutAlign="space-around">
+        <mat-card-title class="loginTitle ">Login</mat-card-title>
+        <mat-card-content>
+          <form [formGroup]="loginForm" class="needs-validation">
+            <div class=" mb-2">
+              <input type="email" [ngClass]="username.invalid && (username.dirty || username.touched) ? 'form-control is-invalid' : 'form-control'" id="username" placeholder="Benutzername" formControlName="username" >
+              <div class="invalid-feedback" *ngIf="username.invalid && (username.dirty || username.touched)">
+                Ungültiger Benutzername
+              </div>
+            </div>
+            <div >
+              <input type="password" [ngClass]="password.invalid && (password.dirty || password.touched) ? 'form-control is-invalid' : 'form-control' " id="password" placeholder="Passwort" formControlName="password" >  
+              <div class="invalid-feedback" *ngIf="password.invalid && (password.dirty || password.touched)">
+                Ungültiges Passwort
+              </div>      
+            </div> 
+            <div>
+              <button type ="submit" [disabled]="loginForm.invalid" (click)="onSubmit()" class="btn mt-4">Login</button>
+            </div>
+
+          </form>
+        </mat-card-content>
+      </mat-card>
+      
+  
+  
+      </div>
+    </div>
+
+  

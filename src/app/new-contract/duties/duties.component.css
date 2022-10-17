@@ -1,0 +1,91 @@
+.container{
+    padding-top: 1.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    min-height: 80%;
+    max-height: max-content;
+}
+
+@media (min-width: 960px) {
+    .container {
+        padding-top: 1.5rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        height: 90%;
+    }
+    .btn-row{
+        padding-bottom: 0;
+    }
+  }
+
+a{
+    color: #00649C;
+}
+
+
+button{
+    background-color: #8CB323; 
+    color: #292929;
+    border: #8CB323;
+    width: 90pt;
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+    font-size: 14px;
+    
+
+}
+
+.btn-row{
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 1rem;
+}
+
+.return-btn{
+    background-color: #E7E7E7; 
+    color: #292929;
+    border: #E7E7E7;
+}
+
+.form-select{
+    font-size: 15px;
+}
+
+.form-control{
+    font-size: 15px;
+}
+
+table {
+    width: 100%;
+    margin-top: 3em;
+}
+
+.mat-header-row{
+    background-color: #00649C;
+}
+
+th{
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+}
+td.mat-cell{
+   padding-right: 150px; 
+   align-self: center;;
+}
+td.mat-cell:last-of-type{
+    padding-right: 18px;
+    align-content: flex-end;
+}
+
+td.mat-cell:first-of-type{
+    padding-left: 18px;
+}
+
+.gray { background-color: #F4F4F4 
+}
+
+.mat-column-edit {
+    width: 7% !important;
+}
