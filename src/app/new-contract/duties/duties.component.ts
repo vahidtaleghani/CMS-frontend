@@ -89,7 +89,7 @@ export class DutiesComponent implements OnInit {
     const data = this.service.getAllAddedDuty().subscribe(res => {
 
       for (let index = 0; index < res.length; index++) {
-        console.log(res[index]['Id']);
+        console.log(res[index]['Date']);
         duties.push(new Duty(res[index]['Id'], res[index]['Date'], this.getDutyTypeById(res[index]['DutyTypeId']), res[index]['Comment']));
       }
 

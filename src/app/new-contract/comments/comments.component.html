@@ -31,7 +31,7 @@
       <!-- Date Column -->
       <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef>{{'table.date' | translate}}</th>
-        <td mat-cell *matCellDef="let element"> {{element.Date}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.Date | date:'yyyy-MM-dd'}} </td>
       </ng-container>
     
       <!-- Comment Column -->

@@ -60,7 +60,7 @@
             <!-- Date Column -->
             <ng-container matColumnDef="date">
               <th mat-header-cell *matHeaderCellDef>{{'table.date' | translate}}</th>
-              <td mat-cell *matCellDef="let element"> {{element.DueDate}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.DueDate | date:'yyyy-MM-dd'}} </td>
               <td mat-footer-cell *matFooterCellDef class="table-footer">{{'table.total' | translate}}</td>
             </ng-container>
   
