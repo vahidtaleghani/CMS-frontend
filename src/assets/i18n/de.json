@@ -52,6 +52,7 @@
         "no": "Nein"
     },
     "comment": "Kommentar",
+    "complete-button" : "Abschlißen",
     "next-button": "Weiter",
     "back-button": "Zurück",
     "save-button" : "Speichern",
