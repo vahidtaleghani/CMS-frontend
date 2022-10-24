@@ -34,6 +34,17 @@ button{
     font-size: 14px;
 }
 
+.complete-btn{
+    background-color: #00649C; 
+    color: #E7E7E7;
+    border: #00649C;
+    width: 90pt;
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+    font-size: 14px;
+}
+
 .btn-row{
     padding-left: 2rem;
     padding-right: 2rem;
