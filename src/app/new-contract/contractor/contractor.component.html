@@ -180,10 +180,10 @@
     fxLayout.xs="column" fxLayoutGap="10px">
     <div fxFlex="73" fxFlex.md="61" fxFlex.sm="0" fxFlex.xs="0"> </div>
     <div fxFlex="7" fxFlex.md="19" fxFlex.sm="50" fxFlex.xs="24">
-      <button type="button" class="btn return-btn" (click)="gotoLastPage()">Zurück</button>
+      <button type="button" class="btn return-btn" (click)="gotoLastPage()">{{'back-button' | translate}}</button>
     </div>
     <div fxFlex="20" fxFlex.sm="40">
-      <button type="button" class="btn" (click)="gotoNextPage()">Weiter</button>
+      <button type="button" class="btn" (click)="gotoNextPage()">{{'next-button' | translate}}</button>
     </div>
   </div>
 </div>
