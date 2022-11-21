@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { NgForm } from '@angular/forms';
 import { Department } from './models/department';
+import { DepartmentType } from './models/depatmentType';
 import { DepartmentService } from './services/department.service';
 import { Router } from '@angular/router';
 
@@ -13,13 +14,13 @@ import { Router } from '@angular/router';
 export class AffectedDepartmentComponent implements OnInit {
 
   dropdownList: any[];
-  public allDepartments: Department[] = [];
+  public allDepartments: DepartmentType[] = [];
   public selectedDepartments: Department[] = [];
 
   selectedItems: any[];
   dropdownSettings: IDropdownSettings;
 
-  displayedColumns: string[] = ['name', 'edit'];
+  displayedColumns: string[] = ['person','name', 'edit'];
 
   constructor(private service: DepartmentService,private router: Router) {
 
@@ -47,23 +48,23 @@ export class AffectedDepartmentComponent implements OnInit {
 
   onItemRemove(item: any) {
     console.log(item);
-
   }
 
   getAllDepartmentOptions() {
-    let departments: Department[] = [];
+    let departments: DepartmentType[] = [];
 
     this.service.getAllDepartments().subscribe(data => {
+      console.log(data);
       departments = data['Data'];
 
       departments.forEach(element => {
-        this.dropdownList.push(new Department(element['Id'], element['Name']));
+        this.dropdownList.push(new DepartmentType(element['Id'], element['Name']));
       })
 
       // this.dropdownList = this.allDepartments;
     })
 
-    // console.log(this.allDepartments);
+    //console.log(this.allDepartments);
 
   }
 
@@ -76,7 +77,7 @@ export class AffectedDepartmentComponent implements OnInit {
   }
 
   loadPage() {
-    let departments: Department[] = [];
+    let departments: DepartmentType[] = [];
     let selectedDepartments: Department[] = [];
     this.allDepartments;
 
@@ -84,7 +85,7 @@ export class AffectedDepartmentComponent implements OnInit {
       departments = data['Data'];
 
       departments.forEach(element => {
-        this.allDepartments.push(new Department(element['Id'], element['Name']));
+        this.allDepartments.push(new DepartmentType(element['Id'], element['Name']));
       })
 
       this.dropdownList = this.allDepartments;
@@ -95,28 +96,28 @@ export class AffectedDepartmentComponent implements OnInit {
 
   getSelectedDepartments() {
     let selectedDepartments: Department[] = [];
-    this.service.getSelectedDepartments().subscribe(data => {
+     this.service.getSelectedDepartments().subscribe(data => {
       data['Data'] = data['Data']?.sort((a, b) => (a.DepartmentTypeId > b.DepartmentTypeId ? 1 : -1));
-
       (data['Data']).forEach(element => {
-        selectedDepartments.push(new Department(element['Id'], this.getDepartmentNameById(element['DepartmentTypeId'])));
+        selectedDepartments.push(new Department(element['Id'],element['ContractId'],this.getDepartmentNameById(element['DepartmentTypeId']),element['PersonName']));
       })
-      
       this.selectedDepartments = selectedDepartments;
-    })
+    }) 
   }
 
   submit(departmentForm: NgForm): void {
     let departments : any = [];
-
+    console.log(departmentForm.value['department']);
+    console.log(departmentForm.value['personName']);
     departmentForm.value['department'].forEach(element => {
       const department = {
         'Id': element.id,
-        'DepartmentTypeId': this.getDepartmentIdByName(element.name)
+        'DepartmentTypeId': this.getDepartmentIdByName(element.name),
+        'PersonName' : departmentForm.value['personName']
       };
       departments.push(department);
     })
-
+    console.log(departments);
     this.service.createDepartment(departments).subscribe(data => {
       this.getSelectedDepartments();
     })

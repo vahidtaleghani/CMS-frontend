@@ -11,7 +11,15 @@
   
       <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start" fxLayout.sm="column" fxLayout.xs="column" >
         
-          <div fxFlex="80">
+        <div fxFlex="40" fxFlex.md="30">
+          <input type="text" class="form-control" placeholder="Ansprechperson" aria-label="name"
+          [value]=""
+          [ngModel]="" required name="personName"
+          >
+        </div>
+
+
+          <div fxFlex="40" fxFlex.md="30">
             <ng-multiselect-dropdown
             placeholder="{{'new-contract.affected-department.select-department' | translate}}"
             [settings]="dropdownSettings"
@@ -37,11 +45,18 @@
     <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start">
     <div fxFlex="100">
       <table mat-table [dataSource]="selectedDepartments" class="mat-elevation-z8">
+        
+
+         <!-- Person Column -->
+         <ng-container matColumnDef="person">
+          <th mat-header-cell *matHeaderCellDef>{{'table.Contact-person' | translate}}</th>
+          <td mat-cell *matCellDef="let element"> {{element.PersonName}} </td>
+        </ng-container>
       
         <!-- Department Column -->
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>{{'table.department' | translate}}</th>
-          <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.DepartmentTypeId}} </td>
         </ng-container>
   
         <!-- Edit Column -->
