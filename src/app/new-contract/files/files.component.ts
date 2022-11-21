@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 export interface Files {
   date: string;
@@ -23,9 +24,16 @@ export class FilesComponent implements OnInit {
   displayedColumns: string[] = ['date', 'fileName', 'comment', 'final', 'edit'];
   dataSource = EXAMPLE_DATA;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  gotoNextPage(){
+    this.router.navigate(['contract/home']); 
+  }
+  gotoLastPage(){
+    this.router.navigate(['contract/signed']); 
   }
 
 }
