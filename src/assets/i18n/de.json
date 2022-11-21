@@ -22,7 +22,7 @@
             "project-name": "Projektname"
         },
         "affected-department":{
-            "title": "Betroffene Abteilung",
+            "title": "Interne Ansprechperson",
             "select-department": "Abteilung auswählen"
         },
         "claim":{
@@ -65,7 +65,8 @@
         "person": "Person",
         "file-name": "Dateiname",
         "name": "Name",
-        "last-name":"Nachname"
+        "last-name":"Nachname",
+        "Contact-person":"Ansprechperson"
     },
     "payment-period":{
         "annualy": "Järlich",
