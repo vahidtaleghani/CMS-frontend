@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Liability, PaymentPeriod } from './models/liability';
 import { LiabilityService } from './services/liability.service';
 import { Router } from '@angular/router';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-liability',
@@ -20,7 +22,7 @@ export class LiabilityComponent implements OnInit {
     return this.liabilities.filter(c => c.PaymentPeriodId === paymentPeriodId).map(c => c.Cost).reduce((acc, value) => acc + value, 0);
   }
 
-  constructor(private service: LiabilityService,private router: Router) {
+  constructor(private service: LiabilityService,private router: Router,public dialog: MatDialog ) {
     this.liability = this.clearFormInputArea();
     this.getAllLiabilities();
   }
@@ -94,6 +96,21 @@ export class LiabilityComponent implements OnInit {
   }
 
   deleteById(id: number) {
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent,{
+      data:{
+        title: 'Bestätigen Entfernen',
+        message: 'Sind Sie sicher, dass Sie Folgendes entfernen möchten: ' 
+      }
+    });
+    confirmDialog.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.service.deleteLiability(id).subscribe((responseData) =>{
+          this.clearFormInputArea();
+          this.getAllLiabilities();
+          alert("Delete Successfully");
+        })
+      }
+    });
   }
 
   gotoNextPage(){
