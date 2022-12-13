@@ -1,3 +1,6 @@
+.row{
+    padding: 0;
+}
 button{
     background-color: #8CB323; 
     color: #292929;
@@ -16,4 +19,10 @@ button{
 .container{
     display: flex;
     justify-content: center;
+}
+.mat-title{
+    text-align: center; 
+}
+.mat-content{
+    margin-top: 1rem;
 }
