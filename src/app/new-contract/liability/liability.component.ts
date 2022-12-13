@@ -4,7 +4,9 @@ import { Liability, PaymentPeriod } from './models/liability';
 import { LiabilityService } from './services/liability.service';
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { AlertComponent } from '../../alert/alert.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AlertService } from '../../alert/services/alert.service';
 
 @Component({
   selector: 'app-liability',
@@ -18,11 +20,17 @@ export class LiabilityComponent implements OnInit {
 
   displayedColumns: string[] = ['date', 'monthly', 'quarterly', 'annually', 'edit'];
 
+  // for alert
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
+
   getTotalCost(paymentPeriodId: string) {
     return this.liabilities.filter(c => c.PaymentPeriodId === paymentPeriodId).map(c => c.Cost).reduce((acc, value) => acc + value, 0);
   }
 
-  constructor(private service: LiabilityService,private router: Router,public dialog: MatDialog ) {
+  constructor(private service: LiabilityService,private router: Router,public dialog: MatDialog, public alertService: AlertService) {
     this.liability = this.clearFormInputArea();
     this.getAllLiabilities();
   }
@@ -107,10 +115,14 @@ export class LiabilityComponent implements OnInit {
         this.service.deleteLiability(id).subscribe((responseData) =>{
           this.clearFormInputArea();
           this.getAllLiabilities();
-          alert("Delete Successfully");
+          this.alertService.success("Erfolgreich gelöscht", this.options);
         })
       }
-    });
+    },error =>{
+      console.log(error);
+      this.alertService.error("Ein Fehler ist aufgetreten", this.options);
+    }
+    );
   }
 
   gotoNextPage(){
