@@ -47,6 +47,7 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient} from '@angular/common/http';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     ClaimComponent,
     ContractorComponent,
     LiabilityComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
