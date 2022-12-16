@@ -3,6 +3,9 @@ import { NgForm } from '@angular/forms';
 import { Claim, PaymentPeriod } from './models/claim';
 import { ClaimService } from './services/claim.service';
 import { Router } from '@angular/router';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertService } from '../../alert/services/alert.service';
 
 @Component({
   selector: 'app-claim',
@@ -16,11 +19,17 @@ export class ClaimComponent implements OnInit {
 
   displayedColumns: string[] = ['date', 'monthly', 'quarterly', 'annually', 'edit'];
 
+  // for alert
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
+
   getTotalCost(paymentPeriodId: string) {
     return this.claims.filter(c => c.PaymentPeriodId === paymentPeriodId).map(c => c.Cost).reduce((acc, value) => acc + value, 0);
   }
 
-  constructor(private service: ClaimService,private router: Router) {
+  constructor(private service: ClaimService,private router: Router,public dialog: MatDialog, public alertService: AlertService) {
 
     this.claim = this.clearFormInputArea();
     this.getAllClaims();
@@ -94,8 +103,27 @@ export class ClaimComponent implements OnInit {
   }
 
   deleteById(id: number) {
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent,{
+      data:{
+        title: 'Bestätigen Entfernen',
+        message: 'Sind Sie sicher, dass Sie Folgendes entfernen möchten: ' 
+      }
+    });
+    confirmDialog.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.service.deleteClaim(id).subscribe((responseData) =>{
+          this.clearFormInputArea();
+          this.getAllClaims();
+          this.alertService.success("Erfolgreich gelöscht", this.options);
+        })
+      }
+    },error =>{
+      console.log(error);
+      this.alertService.error("Ein Fehler ist aufgetreten", this.options);
+    }
+    );
   }
-  //##############################
+
   gotoNextPage(){
     this.router.navigate(['contract/affected-department']); 
   }
