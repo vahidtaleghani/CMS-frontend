@@ -27,4 +27,8 @@ export class SignService {
         this.httpOptions
       );
   }
+
+  deleteSign(id: number){
+    return this.http.delete('https://localhost:44353/api/Sign/'+id);
+  }
 }
