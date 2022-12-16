@@ -4,7 +4,9 @@ import { Fine } from './models/fine';
 import { FineType } from './models/finetype';
 import { FineService } from './services/fine.service';
 import { Router } from '@angular/router';
-
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertService } from '../../alert/services/alert.service';
 
 
 @Component({
@@ -20,7 +22,13 @@ export class FineComponent implements OnInit {
 
   displayedColumns: string[] = ['deadline', 'price', 'comment', 'edit'];
 
-  constructor(private service: FineService,private router: Router) { }
+     // for alert
+     options = {
+      autoClose: true,
+      keepAfterRouteChange: false
+    };
+
+  constructor(private service: FineService,private router: Router,public dialog: MatDialog, public alertService: AlertService) { }
 
   ngOnInit(): void {
     this.fine = this.clearFormInputArea();
@@ -125,7 +133,25 @@ export class FineComponent implements OnInit {
   }
 
   deleteById(id: number) {
-
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent,{
+      data:{
+        title: 'Bestätigen Entfernen',
+        message: 'Sind Sie sicher, dass Sie Folgendes entfernen möchten: ' 
+      }
+    });
+    confirmDialog.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.service.deleteFine(id).subscribe((responseData) =>{
+          this.clearFormInputArea();
+          this.getAllAddedFine();
+          this.alertService.success("Erfolgreich gelöscht", this.options);
+        })
+      }
+    },error =>{
+      console.log(error);
+      this.alertService.error("Ein Fehler ist aufgetreten", this.options);
+    }
+    );
   }
 
   gotoNextPage(){
