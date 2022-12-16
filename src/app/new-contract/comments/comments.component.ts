@@ -5,7 +5,9 @@ import { Comment } from './models/comment';
 import { NgForm } from '@angular/forms';
 import { CommentService } from './services/comment.service';
 import { Router } from '@angular/router';
-
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertService } from '../../alert/services/alert.service';
 
 @Component({
   selector: 'app-comments',
@@ -18,7 +20,13 @@ export class CommentsComponent implements OnInit {
 
   displayedColumns: string[] = ['date', 'comment', 'person', 'edit'];
 
-  constructor(private service: CommentService,private router: Router) { }
+  // for alert
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
+
+  constructor(private service: CommentService,private router: Router ,public dialog: MatDialog, public alertService: AlertService) { }
 
   ngOnInit(): void {
     this.comment = this.clearFormInputArea();
@@ -83,7 +91,25 @@ export class CommentsComponent implements OnInit {
   }
 
   deleteById(id: number) {
-
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent,{
+      data:{
+        title: 'Bestätigen Entfernen',
+        message: 'Sind Sie sicher, dass Sie Folgendes entfernen möchten: ' 
+      }
+    });
+    confirmDialog.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.service.deleteComment(id).subscribe((responseData) =>{
+          this.clearFormInputArea();
+          this.getAllAddedComment();
+          this.alertService.success("Erfolgreich gelöscht", this.options);
+        })
+      }
+    },error =>{
+      console.log(error);
+      this.alertService.error("Ein Fehler ist aufgetreten", this.options);
+    }
+    );
   }
   gotoNextPage(){
     this.router.navigate(['contract/signed']); 
