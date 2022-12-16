@@ -5,6 +5,9 @@ import { Department } from './models/department';
 import { DepartmentType } from './models/depatmentType';
 import { DepartmentService } from './services/department.service';
 import { Router } from '@angular/router';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertService } from '../../alert/services/alert.service';
 
 @Component({
   selector: 'app-affected-department',
@@ -22,7 +25,13 @@ export class AffectedDepartmentComponent implements OnInit {
 
   displayedColumns: string[] = ['person','name', 'edit'];
 
-  constructor(private service: DepartmentService,private router: Router) {
+      // for alert
+      options = {
+        autoClose: true,
+        keepAfterRouteChange: false
+      };
+
+  constructor(private service: DepartmentService,private router: Router,public dialog: MatDialog, public alertService: AlertService) {
 
   }
 
@@ -121,6 +130,27 @@ export class AffectedDepartmentComponent implements OnInit {
     this.service.createDepartment(departments).subscribe(data => {
       this.getSelectedDepartments();
     })
+  }
+
+  deleteById(id: number) {
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent,{
+      data:{
+        title: 'Bestätigen Entfernen',
+        message: 'Sind Sie sicher, dass Sie Folgendes entfernen möchten: ' 
+      }
+    });
+    confirmDialog.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.service.deleteDepartment(id).subscribe((responseData) =>{
+          this.getSelectedDepartments();
+          this.alertService.success("Erfolgreich gelöscht", this.options);
+        })
+      }
+    },error =>{
+      console.log(error);
+      this.alertService.error("Ein Fehler ist aufgetreten", this.options);
+    }
+    );
   }
 
   gotoNextPage(){

@@ -1,97 +1,34 @@
 <div class="container " ng-app="" ngForm #myForm="ngForm" (ngSubmit)="submit(myForm)" novalidate>
-    <div fxLayout="column">
-      <div fxLayout="row">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/contract">{{'new-contract.title' | translate}}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{'new-contract.affected-department.title' | translate}}</li>
-          </ol>
-        </nav>
+  <div fxLayout="column">
+    <div fxLayout="row">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/contract">{{'new-contract.title' | translate}}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{'new-contract.affected-department.title' | translate}}</li>
+        </ol>
+      </nav>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start" fxLayout.sm="column" fxLayout.xs="column" >
+      
+      <div fxFlex="40" fxFlex.md="30">
+        <input type="text" class="form-control" placeholder="Ansprechperson" aria-label="name"
+        [value]=""
+        [ngModel]="" required name="personName"
+        >
       </div>
-  
-      <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start" fxLayout.sm="column" fxLayout.xs="column" >
-        
+
+
         <div fxFlex="40" fxFlex.md="30">
-          <input type="text" class="form-control" placeholder="Ansprechperson" aria-label="name"
-          [value]=""
-          [ngModel]="" required name="personName"
-          >
+          <ng-multiselect-dropdown
+          placeholder="{{'new-contract.affected-department.select-department' | translate}}"
+          [settings]="dropdownSettings"
+          [data]="dropdownList"
+          [(ngModel)]="selectedItems" required name="department"
+          (onSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAll($event)"
+          (onDeSelect)="onItemRemove($event)"
+        >
+        </ng-multiselect-dropdown>
         </div>
-
-
-          <div fxFlex="40" fxFlex.md="30">
-            <ng-multiselect-dropdown
-            placeholder="{{'new-contract.affected-department.select-department' | translate}}"
-            [settings]="dropdownSettings"
-            [data]="dropdownList"
-            [(ngModel)]="selectedItems" required name="department"
-            (onSelect)="onItemSelect($event)"
-            (onSelectAll)="onSelectAll($event)"
-            (onDeSelect)="onItemRemove($event)"
-          >
-          </ng-multiselect-dropdown>
-          </div>
-      
-          
-          <div fxFlex="20">
-              <button type="submit" (click)="submit(myForm)" class="btn ">{{'save-button' | translate}}</button>
-          </div>
-      </div>
-
-
-      
     
-  
-    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start">
-    <div fxFlex="100">
-      <table mat-table [dataSource]="selectedDepartments" class="mat-elevation-z8">
-        
-
-         <!-- Person Column -->
-         <ng-container matColumnDef="person">
-          <th mat-header-cell *matHeaderCellDef>{{'table.Contact-person' | translate}}</th>
-          <td mat-cell *matCellDef="let element"> {{element.PersonName}} </td>
-        </ng-container>
-      
-        <!-- Department Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>{{'table.department' | translate}}</th>
-          <td mat-cell *matCellDef="let element"> {{element.DepartmentTypeId}} </td>
-        </ng-container>
-  
-        <!-- Edit Column -->
-        <ng-container matColumnDef="edit">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element">
-            <span>
-              <!-- <mat-icon>edit</mat-icon>  for edit--> 
-              <mat-icon>delete</mat-icon>
-            </span>
-          </td>
-        </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; let even = odd; columns: displayedColumns;" [ngClass]="{gray: even}"></tr>
-      </table>
-    </div>
-    </div>
-  </div>
-  </div>
-  
-  
-  
-  
-  <div fxLayout="column-reverse" class="btn-row">
-    <div fxLayout="row" fxLayoutGap="" fxLayoutAlign="end"  fxLayoutAlign.sm="end end" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10px">
-      <div fxFlex="73" fxFlex.md="61" fxFlex.sm="0" fxFlex.xs="0"> </div>
-      <div fxFlex="7" fxFlex.md="19" fxFlex.sm="50" fxFlex.xs="24">
-        <button type="button" class="btn return-btn" (click)="gotoLastPage()">{{'back-button' | translate}}</button>
-    </div>
-      <div fxFlex="20" fxFlex.sm="40" >
-          <button type="button" class="btn" (click)="gotoNextPage()">{{'next-button' | translate}}</button>
-      </div>
-    </div>
-  </div>
-
-
-
