@@ -45,6 +45,8 @@ import { LiabilityComponent } from './new-contract/liability/liability.component
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient} from '@angular/common/http';
+import { AllContractsComponent } from './all-contracts/all-contracts.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -65,10 +67,12 @@ import {HttpClient} from '@angular/common/http';
     AffectedDepartmentComponent,
     ClaimComponent,
     ContractorComponent,
-    LiabilityComponent
+    LiabilityComponent,
+    AllContractsComponent
   ],
   imports: [
     BrowserModule,
+    NgSelectModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,

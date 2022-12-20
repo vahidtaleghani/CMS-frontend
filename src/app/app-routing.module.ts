@@ -17,11 +17,13 @@ import { AffectedDepartmentComponent } from './new-contract/affected-department/
 import { ClaimComponent } from './new-contract/claim/claim.component';
 import { ContractorComponent } from './new-contract/contractor/contractor.component';
 import { LiabilityComponent } from './new-contract/liability/liability.component';
+import { AllContractsComponent } from './all-contracts/all-contracts.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'contract', component: ContractComponent},
   { path: 'Vertragspartner', component: ContractpartnerComponent },
   { path: 'home', component: HomeComponent },
+  
   { path: 'contract', component: ContractComponent,
     children: [
       { path: 'info', component: InfoComponent },
@@ -35,7 +37,8 @@ const routes: Routes = [
       { path: 'affected-department', component: AffectedDepartmentComponent },
       { path: 'claim', component: ClaimComponent},
       { path: 'contractor', component: ContractorComponent},
-      { path: 'liability', component: LiabilityComponent}
+      { path: 'liability', component: LiabilityComponent },
+      { path: 'all-contracts', component: AllContractsComponent },
     ]
   },
   { path: '**', redirectTo: 'home' },
