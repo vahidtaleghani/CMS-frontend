@@ -4,6 +4,9 @@ import { Duty } from './models/duty';
 import { DutyType } from './models/dutytype';
 import { DutyService } from './services/duty.service';
 import { Router } from '@angular/router';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertService } from '../../alert/services/alert.service';
 
 @Component({
   selector: 'app-duties',
@@ -18,7 +21,13 @@ export class DutiesComponent implements OnInit {
   public duties: Duty[] = [];
   public duty: Duty;
 
-  constructor(private service: DutyService,private router: Router) { }
+  // for alert
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
+
+  constructor(private service: DutyService,private router: Router ,public dialog: MatDialog, public alertService: AlertService) { }
 
   ngOnInit(): void {
     this.duty = this.clearFormInputArea();
@@ -138,7 +147,25 @@ export class DutiesComponent implements OnInit {
   }
 
   deleteById(id: number) {
-
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent,{
+      data:{
+        title: 'Bestätigen Entfernen',
+        message: 'Sind Sie sicher, dass Sie Folgendes entfernen möchten: ' 
+      }
+    });
+    confirmDialog.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.service.deleteDuty(id).subscribe((responseData) =>{
+          this.clearFormInputArea();
+          this.getAllAddedDuty();
+          this.alertService.success("Erfolgreich gelöscht", this.options);
+        })
+      }
+    },error =>{
+      console.log(error);
+      this.alertService.error("Ein Fehler ist aufgetreten", this.options);
+    }
+    );
   }
 
   gotoNextPage(){

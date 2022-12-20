@@ -5,7 +5,9 @@ import { Signature } from './models/signature';
 import { NgForm } from '@angular/forms';
 import { SignService } from './services/sign.service';
 import { Router } from '@angular/router';
-
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertService } from '../../alert/services/alert.service';
 
 @Component({
   selector: 'app-signed',
@@ -19,8 +21,13 @@ export class SignedComponent implements OnInit {
 
   public signatures: Signature[] = [];
   public signature: Signature;
-
-  constructor(private service: SignService,private router: Router) { }
+  
+  // for alert
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
+  constructor(private service: SignService,private router: Router ,public dialog: MatDialog, public alertService: AlertService) { }
 
   ngOnInit(): void {
     this.signature = this.clearFormInputArea();
@@ -79,7 +86,25 @@ export class SignedComponent implements OnInit {
   }
 
   deleteById(id: number) {
-
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent,{
+      data:{
+        title: 'Bestätigen Entfernen',
+        message: 'Sind Sie sicher, dass Sie Folgendes entfernen möchten: ' 
+      }
+    });
+    confirmDialog.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.service.deleteSign(id).subscribe((responseData) =>{
+          this.clearFormInputArea();
+          this.getAllAddedSignature();
+          this.alertService.success("Erfolgreich gelöscht", this.options);
+        })
+      }
+    },error =>{
+      console.log(error);
+      this.alertService.error("Ein Fehler ist aufgetreten", this.options);
+    }
+    );
   }
   gotoNextPage(){
     this.router.navigate(['contract/files']); 

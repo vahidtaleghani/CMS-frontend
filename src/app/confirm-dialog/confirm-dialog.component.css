@@ -1,0 +1,28 @@
+.row{
+    padding: 0;
+}
+button{
+    background-color: #8CB323; 
+    color: #292929;
+    border: #8CB323;
+    width: 90pt;
+    margin: 1rem;
+    display: block;
+    font-size: 14px;
+}
+
+.return-btn{
+    background-color: #E7E7E7; 
+    color: #292929;
+    border: #E7E7E7;
+}
+.container{
+    display: flex;
+    justify-content: center;
+}
+.mat-title{
+    text-align: center; 
+}
+.mat-content{
+    margin-top: 1rem;
+}

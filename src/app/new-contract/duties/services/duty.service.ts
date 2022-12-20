@@ -33,4 +33,8 @@ export class DutyService {
         this.httpOptions
       );
   }
+
+  deleteDuty(id: number){
+    return this.http.delete('https://localhost:44353/api/Duty/'+id);
+  }
 }

@@ -28,6 +28,9 @@ export class ClaimService {
         val,
         this.httpOptions
       );
-    
+  }
+
+  deleteClaim(id: number){
+    return this.http.delete('https://localhost:44353/api/Claim/'+id);
   }
 }

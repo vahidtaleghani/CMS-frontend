@@ -33,4 +33,7 @@ export class CategoryService {
         this.httpOptions
       );
   }
+  deleteCategory(id: number){
+    return this.http.delete('https://localhost:44353/api/Category/'+id);
+  }
 }

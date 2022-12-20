@@ -33,4 +33,8 @@ export class FineService {
         this.httpOptions
       );
   }
+
+  deleteFine(id: number){
+    return this.http.delete('https://localhost:44353/api/Fine/'+id);
+  }
 }

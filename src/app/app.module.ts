@@ -39,14 +39,13 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ClaimComponent } from './new-contract/claim/claim.component';
 import { ContractorComponent } from './new-contract/contractor/contractor.component';
 import { LiabilityComponent } from './new-contract/liability/liability.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 // import ngx-translate and the http loader
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient} from '@angular/common/http';
-import { AllContractsComponent } from './all-contracts/all-contracts.component';
-import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -67,8 +66,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     AffectedDepartmentComponent,
     ClaimComponent,
     ContractorComponent,
-    LiabilityComponent,
-    AllContractsComponent
+    LiabilityComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +88,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     MatTableModule,
     MatRadioModule,
     NgMultiSelectDropDownModule,
+    MatDialogModule,
     HttpClientModule,
         TranslateModule.forRoot({
             loader: {
