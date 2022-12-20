@@ -46,6 +46,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient} from '@angular/common/http';
+import { AllContractsComponent } from './all-contracts/all-contracts.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { AlertComponent } from './alert/alert.component';
 
@@ -69,11 +71,13 @@ import { AlertComponent } from './alert/alert.component';
     ClaimComponent,
     ContractorComponent,
     LiabilityComponent,
+    AllContractsComponent,
     ConfirmDialogComponent,
     AlertComponent
   ],
   imports: [
     BrowserModule,
+    NgSelectModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,

@@ -72,5 +72,14 @@
         "annualy": "Järlich",
         "quarterly":"Quartal",
         "monthly": "Monatlich"
-    }
+    },
+    "all-contracts" : "Alle Verträge",
+    "contact-person": "Ansprechperson",
+    "contract-number": "Vertragsnummer",
+    "company-name": "Firmenname",
+    "status":"Status",
+    "contract-type": "Vertragstyp",
+    "search": "Suchen",
+    "select-search-field-contract": "Suchoptionen auswählen"
+
 }

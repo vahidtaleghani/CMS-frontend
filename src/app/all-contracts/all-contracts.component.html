@@ -1,0 +1,136 @@
+<div class="container " ng-app="" ngForm #myForm="ngForm" novalidate>
+    <div fxLayout="column">
+      <div fxLayout="row">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/contract/all-contracts">{{'all-contracts' | translate}}</a></li>
+          </ol>
+        </nav>
+      </div>
+  
+      <div fxLayout="row" fxLayoutAlign="space-between" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px grid">
+        
+        <div fxFlex="" >
+          <input type="text" class="form-control" placeholder="Vertragsnummer/Status/Vertragstyp..." aria-label="name"
+          [value]=""
+          [ngModel]="" required name="personName"
+          >
+        </div>
+
+          <div fxFlex="" >
+
+          <ng-select class="custom-select"
+          [items]="dropdownList"
+          [multiple]="true"
+          [closeOnSelect]="false"
+          [searchable]="false"
+           bindLabel="name"
+           bindValue="id"
+           placeholder = "{{'select-search-field-contract'| translate }}"
+           [(ngModel)]="selectedItems">
+          </ng-select>
+
+
+            
+          
+          </div>
+      
+          
+          <div fxFlex="15" fxFlex.md="20" fxFlex.sm="100" fxFlex.xs="100">
+              <button type="button" class="btn ">{{'search' | translate}}</button>
+          </div>
+      </div>
+        <div fxFlex="100" [style.margin-top]="'3em'" *ngIf="!(contractData.length > 9)">
+          <div fxLayout="row wrap" fxLayout.sm="column" fxLayoutGap="36px grid" fxLayoutAlign="start">
+            <ng-container *ngFor="let contract of contractData">
+              <div  fxFlex="calc(33.3% - 72px)" fxFlex.md="calc(50% - 36px)" fxFlex.sm="100%" fxFlex.xs="100%">
+              <mat-card class= "app-card"> 
+                <div class ="card-edit">
+                  <span>{{contract.status}}</span>
+                  <mat-icon *ngIf="contract.notifications == true">notifications</mat-icon>
+                  <mat-icon>edit</mat-icon>
+                </div>
+                  <br>
+                  <p><span>{{'company-name' | translate}} </span>{{contract.companyName}}</p>
+                  <p><span>{{'contract-number' | translate}} </span>{{contract.number}}</p>
+                  <p><span>{{'contract-type' | translate}} </span>{{contract.type}}</p>
+                  <p><span>{{'contact-person' | translate}} </span>{{contract.contactPerson}}</p>
+              </mat-card>
+            </div>
+            </ng-container>
+          </div>
+        </div>
+        <div fxFlex="100" [style.margin-bottom]="'3em'" *ngIf="contractData.length > 9">
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start" >
+              <table mat-table [dataSource]="contractData" class="mat-elevation-z8">
+              
+               <!-- Number Column -->
+               <ng-container matColumnDef='number'>
+                <th mat-header-cell *matHeaderCellDef>{{'contract-number' | translate}}</th>
+                <td mat-cell *matCellDef="let element"> {{element.number}} </td>
+              </ng-container>
+
+              <!-- Status Column -->
+              <ng-container matColumnDef='status'>
+                <th mat-header-cell *matHeaderCellDef>{{'status' | translate}}</th>
+                <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+              </ng-container>
+            
+              <!-- Company Name Column -->
+              <ng-container matColumnDef='companyName'>
+                <th mat-header-cell *matHeaderCellDef>{{'company-name' | translate}}</th>
+                <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+              </ng-container>
+
+              <!-- Contract Type Column -->
+              <ng-container matColumnDef='type'>
+                <th mat-header-cell *matHeaderCellDef>{{'contract-type' | translate}}</th>
+                <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+              </ng-container>
+
+              <!-- contactPerson Column -->
+              <ng-container matColumnDef='contactPerson'>
+                <th mat-header-cell *matHeaderCellDef>{{'contact-person' | translate}}</th>
+                <td mat-cell *matCellDef="let element"> {{element.contactPerson}} </td>
+              </ng-container>
+        
+              <!-- Notifications Column -->
+              <ng-container matColumnDef="notifications">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                  <span>
+                    <!-- <mat-icon>edit</mat-icon>  for edit--> 
+                    <mat-icon *ngIf="element.notifications == true">notifications</mat-icon>
+                    
+                  </span>
+                </td>
+              </ng-container>
+
+              <!-- Edit Column -->
+              <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                  <span>
+                    <!-- <mat-icon>edit</mat-icon>  for edit--> 
+                    <mat-icon>edit</mat-icon>
+                    
+                  </span>
+                </td>
+              </ng-container>
+            
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; let even = odd; columns: displayedColumns;" [ngClass]="{gray: even}"></tr>
+            </table>
+      </div>
+    </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
