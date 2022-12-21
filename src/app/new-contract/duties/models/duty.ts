@@ -1,14 +1,20 @@
 export class Duty {
+    private contractId : number;
     private id: number;
     private dutyTypeId: string;
     private comment: string;
     private date: string;
 
-    constructor(id: number, date: string, dutyTypeId: string, comment: string) {
+    constructor(contractId: number, id: number, date: string, dutyTypeId: string, comment: string) {
+        this.contractId = contractId;
         this.id = id;
         this.date = date;
         this.dutyTypeId = dutyTypeId;
         this.comment = comment;
+    }
+
+    public get ContractId() : number{
+        return this.contractId;
     }
 
     public get Id(): number {

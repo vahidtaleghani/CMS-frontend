@@ -1,11 +1,13 @@
 export class Notification {
+    private contractId: number;
     private id: number;
     private notificationTypeId: string;
     private email: string;
     private recurring: string;
     private date: string;
 
-    constructor(id: number, notificationTypeId: string, email: string, recurring: string, date: string) {
+    constructor(contractId: number,id: number, notificationTypeId: string, email: string, recurring: string, date: string) {
+        this.contractId = contractId;
         this.id = id;
         this.notificationTypeId = notificationTypeId;
         this.email = email;
@@ -13,6 +15,10 @@ export class Notification {
         this.date = date;
     }
 
+    public get ContractId(): number {
+        return this.contractId;
+    }
+    
     public get Id(): number {
         return this.id;
     }

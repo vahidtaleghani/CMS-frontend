@@ -48,14 +48,14 @@ export class LiabilityComponent implements OnInit {
   getLastAddedLiability(): Liability {
 
     if (this.liabilities.length == 0) {
-      return new Liability(0, "", "", 0);
+      return new Liability(parseInt(sessionStorage.getItem('Id') as string), 0, "", "", 0);
     }
 
     return this.liabilities[this.liabilities.length - 1];
   }
 
   clearFormInputArea(): Liability {
-    return new Liability(0, "", "", Number(""));
+    return new Liability(parseInt(sessionStorage.getItem('Id') as string),0, "", "", Number(""));
   }
 
   hasFormFilledProperly(liabilityForm: NgForm): boolean {
@@ -72,6 +72,7 @@ export class LiabilityComponent implements OnInit {
   submit(liabilityForm: NgForm) {
 
     if (this.hasFormFilledProperly(liabilityForm)) {
+      liabilityForm.value['contractId'] = parseInt(sessionStorage.getItem('Id') as string)
       liabilityForm.value['id'] = this.liability.Id;
 
       if (liabilityForm.value['paymentPeriodId'] === "Annually" || liabilityForm.value['paymentPeriodId'] === "Quarterly"
@@ -80,6 +81,7 @@ export class LiabilityComponent implements OnInit {
         liabilityForm.value['paymentPeriodId'] = PaymentPeriod[liabilityForm.value['paymentPeriodId']];
       }
       const createLiabilityResponse = this.service.createLiability(liabilityForm.value).subscribe((responseData) => {
+        this.liability = this.clearFormInputArea();
         this.getAllLiabilities();
       });
     }

@@ -5,16 +5,22 @@ export enum PaymentPeriod {
 }
 
 export class Liability {
+    private contractId: number;
     private id: number;
     private dueDate: string;
     private paymentPeriodId: string;
     private cost: number;
 
-    constructor(id: number, dueDate: string, paymentPeriodId: string, cost: number) {
+    constructor(contractId: number, id: number, dueDate: string, paymentPeriodId: string, cost: number) {
+        this.contractId = contractId;
         this.id = id;
         this.dueDate = dueDate;
         this.paymentPeriodId = paymentPeriodId;
         this.cost = cost;
+    }
+
+    public get ContractId(): number{
+        return this.contractId;
     }
 
     public get Id(): number {

@@ -9,9 +9,37 @@
         </nav>
       </div>
   
-      <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start" fxLayout.sm="column" fxLayout.xs="column" >
+      <!-- <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start" fxLayout.sm="column" fxLayout.xs="column" >
         
           <div fxFlex="80">
+            <ng-multiselect-dropdown
+            placeholder="{{'new-contract.affected-department.select-department' | translate}}"
+            [settings]="dropdownSettings"
+            [data]="dropdownList"
+            [(ngModel)]="selectedItems" required name="department"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+            (onDeSelect)="onItemRemove($event)"
+          >
+          </ng-multiselect-dropdown>
+          </div>
+      
+          
+          <div fxFlex="20">
+              <button type="submit" (click)="submit(myForm)" class="btn ">{{'save-button' | translate}}</button>
+          </div>
+      </div> -->
+
+      <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start" fxLayout.sm="column" fxLayout.xs="column" >
+        
+        <div fxFlex="40" fxFlex.md="30">
+          <input type="text" class="form-control" placeholder="Ansprechperson" aria-label="name" name="personName"
+          [ngModel]="" required name="personName"
+          >
+        </div>
+
+
+          <div fxFlex="40" fxFlex.md="30">
             <ng-multiselect-dropdown
             placeholder="{{'new-contract.affected-department.select-department' | translate}}"
             [settings]="dropdownSettings"

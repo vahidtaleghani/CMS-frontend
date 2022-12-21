@@ -41,7 +41,7 @@ export class FineComponent implements OnInit {
   }
 
   clearFormInputArea(): Fine {
-    return new Fine(0, "Frist", 0, "");
+    return new Fine(parseInt(sessionStorage.getItem('Id') as string), 0, "Frist", 0, "");
   }
 
   getFineTypeId(type: string): number {
@@ -79,7 +79,7 @@ export class FineComponent implements OnInit {
     const data = this.service.getAllAddedFines().subscribe(res => {
       for (let index = 0; index < res.length; index++) {
         console.log(res[index]['Id']);
-        fines.push(new Fine(res[index]['Id'], this.getFineTypeById(res[index]['FineTypeId']), res[index]['Price'], res[index]['Comment']));
+        fines.push(new Fine(parseInt(sessionStorage.getItem('Id') as string), res[index]['Id'], this.getFineTypeById(res[index]['FineTypeId']), res[index]['Price'], res[index]['Comment']));
       }
 
       this.fines = fines;
@@ -103,6 +103,7 @@ export class FineComponent implements OnInit {
     if (this.hasFormFilledProperly(fineForm)) {
 
       let fine = {
+        'contractId': sessionStorage.getItem('Id'),
         'id': this.fine.Id,
         'fineTypeId': this.getFineTypeId(fineForm.value['deadline']),
         'price': fineForm.value['price'],
@@ -111,6 +112,8 @@ export class FineComponent implements OnInit {
 
       this.service.createFine(fine).subscribe(response => {
         console.log(response);
+        this.fine = this.clearFormInputArea();
+        fineForm.reset();
         this.getAllAddedFine();
       })
     }

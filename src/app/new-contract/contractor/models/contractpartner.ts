@@ -1,6 +1,7 @@
 import { Address } from "./address";
 
 export class ContractPartner{
+    private contractId: number;
     private id: number;
     private companyName : string;
     private person : string;
@@ -11,7 +12,8 @@ export class ContractPartner{
     private telNumber : string;
 
 
-    constructor(id: number, companyName : string, person : string, companyRegistrationNumber : string, department : string, address : Address, email : string, telNumber : string){
+    constructor(contractId: number, id: number, companyName : string, person : string, companyRegistrationNumber : string, department : string, address : Address, email : string, telNumber : string){
+        this.contractId = contractId;
         this.id = id;
         this.companyName = companyName;
         this.person = person;
@@ -20,6 +22,10 @@ export class ContractPartner{
         this.address = address;
         this.email = email;
         this.telNumber = telNumber;
+    }
+
+    public get ContractId(): number { 
+        return this.contractId
     }
 
     public get Id(): number { 

@@ -43,7 +43,7 @@ export class CategorizationComponent implements OnInit {
   }
 
   clearFormInputArea(): Category {
-    return new Category(0, "", "Kategorie");
+    return new Category(parseInt(sessionStorage.getItem('Id') as string), 0, "", "Kategorie");
   }
 
   getCategoryById(id) {
@@ -99,7 +99,7 @@ export class CategorizationComponent implements OnInit {
 
       for (let index = 0; index < res.length; index++) {
         console.log(res[index]['Id']);
-        categories.push(new Category(res[index]['Id'], res[index]['Comment'], this.getCategoryTypById(res[index]['CategoryTypeId'])));
+        categories.push(new Category(parseInt(sessionStorage.getItem('Id') as string), res[index]['Id'], res[index]['Comment'], this.getCategoryTypById(res[index]['CategoryTypeId'])));
       }
 
       this.categories = categories;
@@ -114,6 +114,7 @@ export class CategorizationComponent implements OnInit {
       console.log(this.category);
 
       let category = {
+        'contractId': sessionStorage.getItem('Id'),
         'id': this.category.Id,
         'categoryTypeId': categoryForm.value['categoryTypeId'],
         'comment': categoryForm.value['comment']
@@ -121,6 +122,8 @@ export class CategorizationComponent implements OnInit {
 
       this.service.createCategory(category).subscribe(response => {
         console.log(response);
+        this.category = this.clearFormInputArea();
+        categoryForm.reset();
         this.getAllAddedCategory();
       })
     }

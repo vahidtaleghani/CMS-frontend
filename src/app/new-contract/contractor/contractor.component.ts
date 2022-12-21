@@ -33,7 +33,7 @@ export class ContractorComponent implements OnInit {
 
     this.service.getAllContractPartners().subscribe(data => {
       data.forEach(element => {
-        contractPartners.push(new ContractPartner(element['Id'], element['CompanyName'], element['Person'], element['CompanyRegistrationNumber'], element['Department'], new Address(element['Address']['Street'], element['Address']['HouseNumber'], element['Address']['PostalCode'], element['Address']['City']), element['Email'], element['TelNumber']));
+        contractPartners.push(new ContractPartner(element['contractId'], element['Id'], element['CompanyName'], element['Person'], element['CompanyRegistrationNumber'], element['Department'], new Address(element['Address']['Street'], element['Address']['HouseNumber'], element['Address']['PostalCode'], element['Address']['City']), element['Email'], element['TelNumber']));
       });
       this.contractPartners = contractPartners;
       console.log(this.contractPartners);
@@ -46,16 +46,17 @@ export class ContractorComponent implements OnInit {
 
   submit(contractPartnerForm: NgForm): void {
     
-    const contractPartner = new ContractPartner(this.contractPartner.Id, contractPartnerForm.value['companyName'], contractPartnerForm.value['person'], contractPartnerForm.value['companyRegistrationNumber'], contractPartnerForm.value['department'], new Address(contractPartnerForm.value['street'], contractPartnerForm.value['houseNumber'], contractPartnerForm.value['postalCode'], contractPartnerForm.value['city']), contractPartnerForm.value['email'], contractPartnerForm.value['telNumber']);
+    const contractPartner = new ContractPartner(parseInt(sessionStorage.getItem('Id') as string),this.contractPartner.Id, contractPartnerForm.value['companyName'], contractPartnerForm.value['person'], contractPartnerForm.value['companyRegistrationNumber'], contractPartnerForm.value['department'], new Address(contractPartnerForm.value['street'], contractPartnerForm.value['houseNumber'], contractPartnerForm.value['postalCode'], contractPartnerForm.value['city']), contractPartnerForm.value['email'], contractPartnerForm.value['telNumber']);
 
     this.service.postNewContractPartner(contractPartner).subscribe(response => {
       console.log(response);
+      this.contractPartner = this.clearFormInputArea();
       this.getAllContractPartners();
     })
   }
 
   clearFormInputArea(): ContractPartner {
-    return new ContractPartner(0, "", "", "", "", new Address("", "", "", ""), "", "");
+    return new ContractPartner(parseInt(sessionStorage.getItem('Id') as string),0, "", "", "", "", new Address("", "", "", ""), "", "");
   }
 
   edit(id: number) {

@@ -1,4 +1,5 @@
 export class Signature{
+    private contractId: number;
     private id: number;
     private firstname: string
     private lastname: string;
@@ -6,13 +7,18 @@ export class Signature{
     private isCompletlySigned: string;
     private date: string
 
-    constructor(id: number, firstname: string, lastname: string, isSigned: string, isCompletlySigned: string, date: string){
+    constructor(contractId: number, id: number, firstname: string, lastname: string, isSigned: string, isCompletlySigned: string, date: string){
+        this.contractId = contractId;
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.isSigned = isSigned;
         this.isCompletlySigned = isCompletlySigned;
         this.date = date;
+    }
+
+    public get ContractId(): number{
+        return this.contractId;
     }
 
     public get Id() : number{

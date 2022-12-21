@@ -31,9 +31,9 @@ export class CommentsComponent implements OnInit {
 
     const data = this.service.getAllAddedComment().subscribe(res => {
       console.log(res);
-
+     
       for (let index = 0; index < res.length; index++) {
-        comments.push(new Comment(res[index]['Id'], res[index]['Text'], res[index]['Username'], res[index]['Date']));
+        comments.push(new Comment(parseInt(sessionStorage.getItem('Id') as string), res[index]['Id'], res[index]['Text'], res[index]['Username'], res[index]['Date']));
       }
 
       this.comments = comments;
@@ -41,7 +41,7 @@ export class CommentsComponent implements OnInit {
   }
 
   clearFormInputArea(): Comment {
-    return new Comment(0, "", "", "Datum");
+    return new Comment(parseInt(sessionStorage.getItem('Id') as string), 0, "", "", "Datum");
   }
 
   getCommentById(id: number): Comment {
@@ -66,6 +66,7 @@ export class CommentsComponent implements OnInit {
     // }
 
     let comment = {
+      'contractId': sessionStorage.getItem('Id'),
       'id': this.comment.Id,
       'username': "Farasat",
       'date': "2022-06-22",
@@ -74,6 +75,8 @@ export class CommentsComponent implements OnInit {
 
     this.service.createComment(comment).subscribe(response => {
       console.log(response);
+      this.comment = this.clearFormInputArea();
+      commentForm.reset();
       this.getAllAddedComment();
     })
   }

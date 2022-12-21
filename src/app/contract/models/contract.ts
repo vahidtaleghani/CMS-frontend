@@ -1,14 +1,14 @@
 export class Contract{
-    private usertoken: string;
+    private id: number;
     private status: string;
   
-    constructor(usertoken: string, status: string){
-      this.usertoken = usertoken;
+    constructor(id: number, status: string){
+      this.id = id;
       this.status = status;
     }
   
-    public get Usertoken(): string {
-      return this.usertoken;
+    public get Id(): number {
+      return this.id;
     }
   
     public get Status(): string {

@@ -57,7 +57,7 @@ export class AffectedDepartmentComponent implements OnInit {
       departments = data['Data'];
 
       departments.forEach(element => {
-        this.dropdownList.push(new Department(element['Id'], element['Name']));
+        this.dropdownList.push(new Department(parseInt(sessionStorage.getItem('Id') as string) , element['Id'], element['Name'], element['personName']));
       })
 
       // this.dropdownList = this.allDepartments;
@@ -84,7 +84,7 @@ export class AffectedDepartmentComponent implements OnInit {
       departments = data['Data'];
 
       departments.forEach(element => {
-        this.allDepartments.push(new Department(element['Id'], element['Name']));
+        this.allDepartments.push(new Department(parseInt(sessionStorage.getItem('Id') as string), element['Id'], element['Name'], element['personName']));
       })
 
       this.dropdownList = this.allDepartments;
@@ -99,7 +99,7 @@ export class AffectedDepartmentComponent implements OnInit {
       data['Data'] = data['Data']?.sort((a, b) => (a.DepartmentTypeId > b.DepartmentTypeId ? 1 : -1));
 
       (data['Data']).forEach(element => {
-        selectedDepartments.push(new Department(element['Id'], this.getDepartmentNameById(element['DepartmentTypeId'])));
+        selectedDepartments.push(new Department(parseInt(sessionStorage.getItem('Id') as string) , element['Id'], this.getDepartmentNameById(element['DepartmentTypeId']), element['personName']));
       })
       
       this.selectedDepartments = selectedDepartments;
@@ -108,11 +108,14 @@ export class AffectedDepartmentComponent implements OnInit {
 
   submit(departmentForm: NgForm): void {
     let departments : any = [];
-
+    console.log(departmentForm);
+    
     departmentForm.value['department'].forEach(element => {
       const department = {
+        'contractId': sessionStorage.getItem('Id'),
         'Id': element.id,
-        'DepartmentTypeId': this.getDepartmentIdByName(element.name)
+        'DepartmentTypeId': this.getDepartmentIdByName(element.name),
+        'personName': departmentForm.value['personName']
       };
       departments.push(department);
     })

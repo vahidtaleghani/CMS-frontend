@@ -126,6 +126,7 @@ export class InfoComponent implements OnInit {
 
     if (this.hasFormFilledProperly(infoForm)) {
       // post info 
+      infoForm.value['ContractId'] = sessionStorage.getItem('Id');
       infoForm.value['contractTypeId'] = this.getContractTypeId(infoForm.value['contractTypeId']);
       infoForm.value['contractStatusId'] = this.getContractStatusId(infoForm.value['contractStatusId']);
       infoForm.value['isTemporary'] = (infoForm.value['isTemporary'] === 'true');

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BASEURL } from 'src/app/url';
 
 
 @Injectable({
@@ -20,7 +21,8 @@ export class ContractService {
   };
 
   getContractStatus() {
-    return this.http.get<any>('https://localhost:44353/api/Contract');
+    const id = sessionStorage.getItem('Id') == null ? '0' : sessionStorage.getItem('Id');
+    return this.http.get<any>(BASEURL + 'Contract/'  + id);
   }
 
   constructor(private http: HttpClient) { }
@@ -28,7 +30,7 @@ export class ContractService {
   startNewContract(requestBody: any){
     return this.http
     .post<any>(
-      'https://localhost:44353/api/Contract',
+      BASEURL + 'Contract',
       requestBody,
       this.httpOptions
     )

@@ -1,15 +1,20 @@
 export class Fine{
-
+    private contractId: number;
     private id : number;
     private deadline: string;
     private price: number;
     private comment: string;
 
-    constructor(id: number, deadline: string, price: number, comment:string) {
+    constructor( contractId: number, id: number, deadline: string, price: number, comment:string) {
+        this.contractId = contractId;
         this.id = id;
         this.deadline = deadline;
         this.price = price;
         this.comment = comment;
+    }
+
+    public get ContractId(): number{
+        return this.contractId;
     }
 
     public get Id(): number { 

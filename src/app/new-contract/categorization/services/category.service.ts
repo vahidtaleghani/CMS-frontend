@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { BASEURL } from 'src/app/url';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,24 +11,23 @@ export class CategoryService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  private readonly APIUrl = "https://localhost:44353/api/";
 
   constructor(private http: HttpClient) { }
 
 
   getAllCategoryTypes() {
-    return this.http.get<any>(this.APIUrl + 'CategoryType');
+    return this.http.get<any>(BASEURL+ 'CategoryType');
   }
 
   getAllAddedCategory() {
-    return this.http.get<any>(this.APIUrl + 'Category');
+    return this.http.get<any>(BASEURL+ 'Category/' + sessionStorage.getItem('Id'));
   }
 
 
   createCategory(val: any) {
     return this.http
       .post<any>(
-        'https://localhost:44353/api/Category',
+        BASEURL+ 'Category',
         val,
         this.httpOptions
       );
