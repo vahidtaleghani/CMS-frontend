@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertService } from '../../alert/services/alert.service';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-comments',
@@ -76,7 +77,7 @@ export class CommentsComponent implements OnInit {
     let comment = {
       'id': this.comment.Id,
       'username': "Farasat",
-      'date': "2022-06-22",
+      'date': formatDate(new Date(), 'yyyy-MM-dd','en-US'),
       'text': commentForm.value['comment']
     }
 

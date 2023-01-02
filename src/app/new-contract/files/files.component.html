@@ -1,4 +1,4 @@
-<div class="container " ng-app="">
+<form class="container " #myForm="ngForm" (ngSubmit)="submit(myForm)" enctype="multipart/form-data" novalidate>
     <div fxLayout="column">
       <div fxLayout="row">
         <nav aria-label="breadcrumb">
@@ -10,44 +10,54 @@
       </div>
       <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start" fxLayout.sm="column" fxLayout.xs="column">
         <div fxFlex="45" fxFlex.md="45" >
-          <input type="file" class="form-control" aria-label="file" id="file" placeholder="">
+          <input type="file" class="form-control" aria-label="file" placeholder="" #fileData
+          (change)="onFileSelected($event)" required name="file" [accept]="'.pdf'">
         </div>
         <div fxFlex="30" fxFlex.md="25">
-          <input type="text" class="form-control" placeholder="{{'comment' | translate}}" aria-label="comment">
+          <input type="text" class="form-control" placeholder="{{'comment' | translate}}" aria-label="comment"
+          [value]="file !== undefined && file.Comment"
+          [ngModel]="file !== undefined && file.Comment" name="comment">
         </div>
         <div fxFlex="5" fxFlex.md="10">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="finalCheck">
+            <input class="form-check-input" type="checkbox" id="finalCheck" value="true"
+            [checked]="file !== undefined && file.Final === 'true'"
+            [ngModel]="file !== undefined && file.Final" name="final">
             <label class="form-check-label" for="finalCheck">{{'new-contract.files.final' | translate}}</label>
           </div>
         </div>
         <div fxFlex="20">
-          <button type="button" class="btn ">{{'save-button' | translate}}</button>
+          <button type="submit" value="submit" class="btn ">{{'save-button' | translate}}</button>
         </div>
       </div>
+
+
+
+
+
       <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start">
         <div fxFlex="100">
-          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <table mat-table [dataSource]="files" class="mat-elevation-z8">
             <!-- Date Column -->
             <ng-container matColumnDef="date">
               <th mat-header-cell *matHeaderCellDef>{{'table.date' | translate}}</th>
-              <td mat-cell *matCellDef="let element"> {{element.date }} </td>
+              <td mat-cell *matCellDef="let element"> {{element.Date | date:'yyyy-MM-dd' }} </td>
             </ng-container>
             <!-- File Name Column -->
             <ng-container matColumnDef="fileName">
               <th mat-header-cell *matHeaderCellDef>{{'table.file-name' | translate}}</th>
-              <td mat-cell *matCellDef="let element"> {{element.fileName}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.FileName}} </td>
             </ng-container>
             <!-- Comment Column -->
             <ng-container matColumnDef="comment">
                 <th mat-header-cell *matHeaderCellDef>{{'table.comment' | translate}}</th>
-                <td mat-cell *matCellDef="let element"> {{element.comment}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.Comment}} </td>
               </ng-container>
             <!-- Final Column -->
             <ng-container matColumnDef="final">
               <th mat-header-cell *matHeaderCellDef>{{'new-contract.files.final' | translate}}</th>
               <td mat-cell *matCellDef="let element">
-                <mat-icon>{{ element.final === true ? 'done' : '' }}</mat-icon></td>
+                <mat-icon>{{ element.Final === 'true' ? 'done' : '' }}</mat-icon></td>
             </ng-container>
             <!-- Edit Column -->
             <ng-container matColumnDef="edit">
@@ -55,17 +65,19 @@
               <td mat-cell *matCellDef="let element">
                 <span>
                   <mat-icon>file_download</mat-icon>
-                  <mat-icon>delete</mat-icon>
+                  <mat-icon type="button" (click)="deleteById(element.Id)">delete</mat-icon>
                 </span>
               </td>
             </ng-container>
+
+            
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; let even = odd; columns: displayedColumns;" [ngClass]="{gray: even}"></tr>
           </table>
         </div>
       </div>
     </div>
-  </div>
+</form>
   
   
   <div fxLayout="column-reverse" class="btn-row">

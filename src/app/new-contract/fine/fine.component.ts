@@ -22,11 +22,11 @@ export class FineComponent implements OnInit {
 
   displayedColumns: string[] = ['deadline', 'price', 'comment', 'edit'];
 
-     // for alert
-     options = {
-      autoClose: true,
-      keepAfterRouteChange: false
-    };
+  // for alert
+  options = {
+  autoClose: true,
+  keepAfterRouteChange: false
+  };
 
   constructor(private service: FineService,private router: Router,public dialog: MatDialog, public alertService: AlertService) { }
 

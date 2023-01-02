@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class FilesService {
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({ 'Content-Type': 'application/json'}),
   };
 
   private readonly APIUrl = "https://localhost:44353/api/";
@@ -16,20 +16,20 @@ export class FilesService {
   constructor(private http: HttpClient) { }
 
   getAllFiles() {
-    return this.http.get<any>(this.APIUrl + 'Fine');
+    return this.http.get<any>(this.APIUrl + 'File');
   }
-
 
   createFile(val: any) {
-    return this.http
-      .post<any>(
-        'https://localhost:44353/api/Fine',
-        val,
-        this.httpOptions
-      );
+    return this.http.post<any>('https://localhost:44353/api/File',val,this.httpOptions);
   }
 
-  deleteDuty(id: number){
-    return this.http.delete('https://localhost:44353/api/Fine/'+id);
+  deleteFile(id: number){
+    return this.http.delete('https://localhost:44353/api/File/'+id);
   }
+
+  public uploadProfilePicture(data){
+    var url = "https://localhost:44353/api/File";
+    return this.http.post(url, data,this.httpOptions);
+  }
+
 }
