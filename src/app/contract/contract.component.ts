@@ -14,18 +14,24 @@ export class ContractComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private service: ContractService) { }
 
   ngOnInit(): void {
-    //alert(this.getCurrentUrl);
+    console.log("Hello");
+    alert(this.getCurrentUrl());
     if (this.getCurrentUrl() === '/contract') {
+      console.log("send req");
       this.service.getContractStatus().subscribe(res => {
         console.log(res);
         if (res) {
           const proceed = confirm("Are you sure you want to start a new contract?");
           if(proceed){
+            alert("N")
             this.startNewContract();
           }
           else{
             // this.transferToOldPage();
           }
+        }
+        else{
+          this.startNewContract();
         }
       })
     }
@@ -60,13 +66,12 @@ export class ContractComponent implements OnInit {
   }
 
   startNewContract(): void {
-    const contract = new Contract("farasat-user-token", "active");
+    const id = sessionStorage.getItem('Id');
+    const contract = new Contract(parseInt(id as string), "active");
     const requestBody = JSON.stringify(contract);
-    //alert(requestBody);
     const response = this.service.startNewContract(requestBody).subscribe(res =>{
-      console.log(requestBody);
+      sessionStorage.removeItem('Id')
+      sessionStorage.setItem('Id', res['Message']);
     });
   }
 }
-
-

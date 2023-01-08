@@ -54,9 +54,8 @@ export class NotificationComponent implements OnInit {
   getNotificationById(id: number): Notification {
     return this.notifications.filter(x => x.Id === id)[0];
   }
-
   clearFormInputArea(): Notification {
-    return new Notification(0, "Typ", "", "", "Datum");
+    return new Notification(parseInt(sessionStorage.getItem('Id') as string), 0, "Typ", "", "", "Datum");
   }
 
 
@@ -85,13 +84,12 @@ export class NotificationComponent implements OnInit {
       console.log(res);
       for (let index = 0; index < res.length; index++) {
         const isRepeatitionAllowed = res[index]['IsRepeatitionAllowed'] === true ? 'yes' : 'no';
-        notifications.push(new Notification(res[index]['Id'], this.getNotificationTypeById(res[index]['NotificationTypeId']), res[index]['Email'], isRepeatitionAllowed, res[index]['Date']));
+        notifications.push(new Notification(parseInt(sessionStorage.getItem('Id') as string), res[index]['Id'], this.getNotificationTypeById(res[index]['NotificationTypeId']), res[index]['Email'], isRepeatitionAllowed, res[index]['Date']));
       }
 
       this.notifications = notifications;
     });
   }
-
 
   hasFormFilledProperly(notificationForm: NgForm): boolean {
     let values = new Array();
@@ -111,6 +109,7 @@ export class NotificationComponent implements OnInit {
       notificationForm.value['notificationTypeId'] = this.getNotificationTypeId(notificationForm.value['notificationTypeId']);
 
       let notification = {
+        'contractId' : sessionStorage.getItem('Id'),
         'id': this.notification.Id,
         'notificationTypeId': notificationForm.value['notificationTypeId'],
         'email': notificationForm.value['email'],
@@ -123,6 +122,8 @@ export class NotificationComponent implements OnInit {
 
       this.service.createNotification(notification).subscribe(response => {
         console.log(response);
+        this.notification = this.clearFormInputArea();
+        notificationForm.reset();
         this.getAllAddedNotification();
       })
 
@@ -132,6 +133,7 @@ export class NotificationComponent implements OnInit {
       alert("Error");
     }
   }
+
 
   edit(id: number) {
     this.notification = this.getNotificationById(id);

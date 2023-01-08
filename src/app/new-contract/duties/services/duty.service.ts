@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { BASEURL } from 'src/app/url';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,24 +11,21 @@ export class DutyService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  private readonly APIUrl = "https://localhost:44353/api/";
-
   constructor(private http: HttpClient) { }
 
-
   getAllDutyTypes() {
-    return this.http.get<any>(this.APIUrl + 'DutyType');
+    return this.http.get<any>(BASEURL+ 'DutyType');
   }
 
   getAllAddedDuty() {
-    return this.http.get<any>(this.APIUrl + 'Duty');
+    return this.http.get<any>(BASEURL+ 'Duty/' + sessionStorage.getItem('Id'));
   }
 
 
   createDuty(val: any) {
     return this.http
       .post<any>(
-        'https://localhost:44353/api/Duty',
+        BASEURL+ 'Duty',
         val,
         this.httpOptions
       );

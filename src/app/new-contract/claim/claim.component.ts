@@ -57,14 +57,14 @@ export class ClaimComponent implements OnInit {
   getLastAddedclaim(): Claim {
 
     if (this.claims.length == 0) {
-      return new Claim(0, "", "", 0);
+      return new Claim(parseInt(sessionStorage.getItem('Id') as string), 0, "", "", 0);
     }
 
     return this.claims[this.claims.length - 1];
   }
 
   clearFormInputArea(): Claim {
-    return new Claim(0, "", "", Number(""));
+    return new Claim(parseInt(sessionStorage.getItem('Id') as string), 0, "", "", Number(""));
   }
 
   hasFormFilledProperly(claimForm: NgForm): boolean {
@@ -81,6 +81,7 @@ export class ClaimComponent implements OnInit {
   submit(claimForm: NgForm) {
 
     if (this.hasFormFilledProperly(claimForm)) {
+      claimForm.value['contractId'] = parseInt(sessionStorage.getItem('Id') as string)
       claimForm.value['id'] = this.claim.Id;
 
       if (claimForm.value['paymentPeriodId'] === "Annually" || claimForm.value['paymentPeriodId'] === "Quarterly"
@@ -89,6 +90,8 @@ export class ClaimComponent implements OnInit {
         claimForm.value['paymentPeriodId'] = PaymentPeriod[claimForm.value['paymentPeriodId']];
       }
       const createclaimResponse = this.service.createClaim(claimForm.value).subscribe((responseData) => {
+        this.claim = this.clearFormInputArea();
+        claimForm.reset();
         this.getAllClaims();
       });
     }
@@ -97,6 +100,7 @@ export class ClaimComponent implements OnInit {
     }
 
   }
+
 
   edit(id: number) {
     this.claim = this.getclaimById(id);

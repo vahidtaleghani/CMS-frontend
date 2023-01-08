@@ -44,7 +44,7 @@ export class SignedComponent implements OnInit {
         const isSigned = res[index]['IsSigned'] === true ? 'true' : '';
         const isCompletlySigned = res[index]['IsCompletlySigned'] === true ? 'true' : '';
 
-        signatures.push(new Signature(res[index]['Id'], res[index]['FirstName'], res[index]['LastName'], isSigned, isCompletlySigned, res[index]['Date']));
+        signatures.push(new Signature(parseInt(sessionStorage.getItem('Id') as string), res[index]['Id'], res[index]['FirstName'], res[index]['LastName'], isSigned, isCompletlySigned, res[index]['Date']));
       }
 
       this.signatures = signatures;
@@ -52,33 +52,37 @@ export class SignedComponent implements OnInit {
 
   }
 
+
   getSignatureById(id: number): Signature {
     return this.signatures.filter(x => x.Id === id)[0];
   }
 
   submit(signForm: NgForm) {
+    console.log(signForm.value['isCompletlySigned']);
     
     let sign = {
+      'contractId': sessionStorage.getItem('Id'),
       'id': this.signature.Id,
       'date': signForm.value['date'],
       'firstname': signForm.value['firstname'],
       'lastname': signForm.value['lastname'],
       'isSigned': signForm.value['isSigned'] === '' ? false : signForm.value['isSigned'],
-      'isCompletlySigned': signForm.value['isCompletlySigned'] === '' ? false : signForm.value['isCompletlySigned']
+      'isCompletlySigned': signForm.value['isCompletlySigned'] === '' || signForm.value['isCompletlySigned'] === null ? false : signForm.value['isCompletlySigned']
     }
 
-    console.log(sign);
-
-    this.service.createSign(sign).subscribe(response => {
-      console.log(response);
-      this.getAllAddedSignature();
-    })
+      this.service.createSign(sign).subscribe(response => {
+        console.log(response);
+        this.signature =this.clearFormInputArea();
+        signForm.reset();
+        this.getAllAddedSignature();
+      })
 
   }
 
   clearFormInputArea(): Signature {
-    return new Signature(0, "", "", "", "", "Datum");
+    return new Signature(parseInt(sessionStorage.getItem('Id') as string), 0, "", "", "", "", "Datum");
   }
+
 
   edit(id: number) {
 

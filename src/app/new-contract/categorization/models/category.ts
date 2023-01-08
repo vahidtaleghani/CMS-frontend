@@ -1,15 +1,20 @@
 import { CategoryType } from "./categorytype";
 
 export class Category{
-
+    private contractId: number;
     private id : number;
     private comment : string;
     private categoryTypeId : string;
 
-    constructor(id : number, comment : string, categoryTypeId : string){
+    constructor(contractId: number, id : number, comment : string, categoryTypeId : string){
+        this.contractId = contractId;
         this.id = id;
         this.comment = comment;
         this.categoryTypeId = categoryTypeId;
+    }
+
+    public get ContractId() : number{
+       return this.contractId;
     }
 
     public get Id(): number{

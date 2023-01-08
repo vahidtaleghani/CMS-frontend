@@ -71,7 +71,7 @@ export class DutiesComponent implements OnInit {
   // }
 
   clearFormInputArea(): Duty {
-    return new Duty(0, "Datum", "Typ", "");
+    return new Duty(parseInt(sessionStorage.getItem('Id') as string), 0, "Datum", "Typ", "");
   }
 
   loadPage() {
@@ -99,12 +99,12 @@ export class DutiesComponent implements OnInit {
 
       for (let index = 0; index < res.length; index++) {
         console.log(res[index]['Date']);
-        duties.push(new Duty(res[index]['Id'], res[index]['Date'], this.getDutyTypeById(res[index]['DutyTypeId']), res[index]['Comment']));
+        duties.push(new Duty(parseInt(sessionStorage.getItem('Id') as string), res[index]['Id'], res[index]['Date'], this.getDutyTypeById(res[index]['DutyTypeId']), res[index]['Comment']));
       }
 
       this.duties = duties;
     });
-  }
+  }   
 
   hasFormFilledProperly(dutyForm: NgForm): boolean {
     let values = new Array();
@@ -125,6 +125,7 @@ export class DutiesComponent implements OnInit {
       console.log(dutyForm.value);
 
       let duty = {
+        'contractId' : sessionStorage.getItem('Id'),
         'id': this.duty.Id,
         'dutyTypeId': dutyForm.value['dutyTypeId'],
         'comment': dutyForm.value['comment'],
@@ -133,6 +134,8 @@ export class DutiesComponent implements OnInit {
 
       this.service.createDuty(duty).subscribe(response => {
         console.log(response);
+        this.duty = this.clearFormInputArea();
+        dutyForm.reset();
         this.getAllAddedDuty();
       })
     }
