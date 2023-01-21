@@ -91,14 +91,15 @@ export class FilesComponent implements OnInit {
       /* let formData = new FormData();
       formData.append('file' , this.data); */
 
-      this.service.createFile(file).subscribe(response => {
-        //console.log(file);
-        this.loadPage();
-        this.alertService.success("Erfolgreich hinzugefügt", this.options);
-      },
-      error => {
+      this.service.createFile(file).subscribe({
+        next: response => {
+          //console.log(file);
+          this.loadPage();
+          this.alertService.success("Erfolgreich hinzugefügt", this.options);
+        },
+        error: error => {
         this.alertService.error(error, this.options);
-      })
+      }})
   }
 
   clearFormInputArea(): File {

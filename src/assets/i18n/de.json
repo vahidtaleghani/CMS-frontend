@@ -80,6 +80,7 @@
     "status":"Status",
     "contract-type": "Vertragstyp",
     "search": "Suchen",
-    "select-search-field-contract": "Suchoptionen auswählen"
+    "select-search-field-contract": "Suchoptionen auswählen",
+    "contactperson": "Ansprechperson"
 
 }
