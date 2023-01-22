@@ -99,6 +99,7 @@ export class FilesComponent implements OnInit {
       /* let formData = new FormData();
       formData.append('file' , this.data); */
 
+<<<<<<< HEAD
 /*       this.service.uploadProfilePicture(file).subscribe(response => {
         console.log(file);
         this.loadPage();
@@ -116,6 +117,16 @@ export class FilesComponent implements OnInit {
         },
         error: error => {
         this.alertService.error(error, this.options);
+=======
+      this.service.createFile(file).subscribe({
+        next: response => {
+          //console.log(file);
+          this.loadPage();
+          this.alertService.success("Erfolgreich hinzugefügt", this.options);
+        },
+        error: error => {
+        this.alertService.error(error, this.options);
+>>>>>>> 0c3b7779c759f53feb73594877a1a1222a81fd88
       }})
   }
 
