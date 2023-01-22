@@ -36,6 +36,6 @@ export class LiabilityService {
   }
 
   deleteLiability(id: number){
-    return this.http.delete('https://localhost:44353/api/Liability/'+id);
+    return this.http.delete(BASEURL+ 'Liability/'+id);
   }
 }

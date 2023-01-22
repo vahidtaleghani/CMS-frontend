@@ -31,6 +31,6 @@ export class ClaimService {
   }
 
   deleteClaim(id: number){
-    return this.http.delete('https://localhost:44353/api/Claim/'+id);
+    return this.http.delete(BASEURL+'Claim/'+id);
   }
 }

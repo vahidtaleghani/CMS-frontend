@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BASEURL } from 'src/app/url';
 
 @Injectable({
   providedIn: 'root'
@@ -11,29 +12,27 @@ export class DepartmentService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  private readonly APIUrl = "https://localhost:44353/api/";
-
   constructor(private http: HttpClient) { }
 
 
   getAllDepartments(){
-    return this.http.get<any>(this.APIUrl + 'DepartmentType');
+    return this.http.get<any>(BASEURL + 'DepartmentType');
   }
 
   getSelectedDepartments(){
-    return this.http.get<any>(this.APIUrl + 'Department');
+    return this.http.get<any>(BASEURL  + 'Department');
   }
 
 
   createDepartment(val: any) {
     return this.http
       .post<any>(
-        'https://localhost:44353/api/Department',
+        BASEURL +'Department',
         val,
         this.httpOptions
       );
   }
   deleteDepartment(id: number){
-    return this.http.delete('https://localhost:44353/api/Department/'+id);
+    return this.http.delete(BASEURL +'Department/'+id);
   }
 }

@@ -35,6 +35,6 @@ export class NotificationService {
   }
 
   deleteNotification(id: number){
-    return this.http.delete('https://localhost:44353/api/Notification/'+id);
+    return this.http.delete(BASEURL+ 'Notification/'+id);
   }
 }

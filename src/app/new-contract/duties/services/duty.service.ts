@@ -32,6 +32,6 @@ export class DutyService {
   }
 
   deleteDuty(id: number){
-    return this.http.delete('https://localhost:44353/api/Duty/'+id);
+    return this.http.delete(BASEURL+'Duty/'+id);
   }
 }
