@@ -1,35 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { BASEURL } from 'src/app/url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilesService {
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json'}),
-  };
-
-  private readonly APIUrl = "https://localhost:44353/api/";
+   httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' ,'Content-Disposition': 'form-data'})
+  }; 
+ 
+ /*  httpOptions = {
+    headers: new HttpHeaders().set('Content-Type', 'multipart/form-data')
+  };  */
 
   constructor(private http: HttpClient) { }
 
   getAllFiles() {
-    return this.http.get<any>(this.APIUrl + 'File');
+    return this.http.get<any>(BASEURL + 'File');
   }
 
   createFile(val: any) {
-    return this.http.post<any>('https://localhost:44353/api/File',val,this.httpOptions);
+    return this.http.post<any>(BASEURL+ 'File',val, this.httpOptions);
   }
 
   deleteFile(id: number){
-    return this.http.delete('https://localhost:44353/api/File/'+id);
+    return this.http.delete(BASEURL+ 'File/'+id);
   }
-
-  public uploadProfilePicture(data){
-    var url = "https://localhost:44353/api/File";
-    return this.http.post(url, data,this.httpOptions);
-  }
-
 }
