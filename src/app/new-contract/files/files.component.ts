@@ -70,35 +70,53 @@ export class FilesComponent implements OnInit {
     console.log(this.fileInput.files);
 
       /* let formData = new FormData();
+      
       formData.append('id', this.file.Id.toString());
       formData.append('date', formatDate(new Date(), 'yyyy-MM-dd','en-US'));
       formData.append('fileName', this.fileName);
       formData.append('comment', fileForm['comment']);
       formData.append('isfinal', fileForm['final'] === '' ? false : fileForm['final']);
-      formData.append('data' , this.fileInput.files); 
- */
+      formData.append('data' , this.data);*/
 
-       let file = {
+      var formData = new FormData();
+      formData.append('file', this.data, this.fileName);
+ 
+      for(var key in formData) {
+        console.log(formData[key]);
+    }
+
+
+       /* let file = {
         'id': this.file.Id,
         'date': formatDate(new Date(), 'yyyy-MM-dd','en-US'),
         'fileName': this.fileName,
-        'comment': fileForm['comment'],
-        'isfinal': fileForm['final'] === '' ? false : fileForm['final'], 
+        'comment': fileForm.value['comment'],
+        'isfinal': fileForm.value['final'] === '' ? false : fileForm.value['final'], 
         'data' : this.data
-      } 
+      }  */
 
-      //console.log(file);
+      console.log(formData);
       /* let formData = new FormData();
       formData.append('file' , this.data); */
 
-      this.service.createFile(file).subscribe(response => {
-        //console.log(file);
+/*       this.service.uploadProfilePicture(file).subscribe(response => {
+        console.log(file);
         this.loadPage();
         this.alertService.success("Erfolgreich hinzugefügt", this.options);
       },
       error => {
         this.alertService.error(error, this.options);
-      })
+      }) */
+
+      this.service.createFile(formData).subscribe({
+        next: response => {
+          console.log(formData);
+          this.loadPage();
+          this.alertService.success("Erfolgreich hinzugefügt", this.options);
+        },
+        error: error => {
+        this.alertService.error(error, this.options);
+      }})
   }
 
   clearFormInputArea(): File {
