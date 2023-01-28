@@ -32,7 +32,7 @@
         },
         "comments":{
             "title": "Comments",
-            "comment":"Komment"
+            "comment":"Comment"
         },
         "files":{
             "title": "Contract files",
@@ -71,7 +71,7 @@
         "yes": "Yes",
         "no": "No"
     },
-    "comment": "Commentr",
+    "comment": "Comment",
     "complete-button" : "Complete",
     "next-button": "Next",
     "back-button": "Back",
@@ -92,7 +92,7 @@
     },
     "payment-period":{
         "annualy": "Annualy",
-        "quarterly":"quarterly",
+        "quarterly":"Quarterly",
         "monthly": "Monthly"
     },
     "address":{
@@ -106,7 +106,7 @@
     "contract-number": "Contract number",
     "company-name": "Company name",
     "status":"Status",
-    "contract-type": "Contryct type",
+    "contract-type": "Contract type",
     "search": "Search",
     "select-search-field-contract": "Choose search options",
     "contactperson": "Contract person",
