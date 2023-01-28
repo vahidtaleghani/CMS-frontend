@@ -1,0 +1,123 @@
+{
+    "menu": {
+        "contracts": "Contracts",
+        "contractors": "Contractors",
+        "notifications": "Notifications"
+    },
+    "new-contract":{
+        "title": "New contract",
+        "general-information": {
+            "title": "General information",
+            "contract-type": "Contract type",
+            "limited": "Limited",
+            "type": "Type",
+            "status": "Status",
+            "start-date": "Start date",
+            "end-date": "End date",
+            "termination-period": "Termination period",
+            "absolute": "Absolute",
+            "relative": "Relative",
+            "date/months": "Date/Months",
+            "project-reference": "Project reference",
+            "project-id": "Project ID",
+            "project-name": "Project name"
+        },
+        "affected-department":{
+            "title": "Interne Ansprechperson",
+            "select-department": "Abteilung auswählen"
+        },
+        "claim":{
+            "title": "Claim",
+            "due-date": "Due date"
+        },
+        "comments":{
+            "title": "Comments",
+            "comment":"Komment"
+        },
+        "files":{
+            "title": "Contract files",
+            "final": "Final"
+        },
+        "penalty":{
+            "title": "Penalty",
+            "period": "Period"
+        },
+        "signed" :{
+            "title": "Signed", 
+            "name": "First ame",
+            "last-name": "Last name",
+            "signed": "Signed",
+            "fully-signed": "Fully Signed"
+        }, 
+        "notification":{
+            "title": "Notification"
+        },
+        "duties": {
+            "title": "Duties"
+        },
+        "categorization":{
+            "title": "Categorization",
+            "category": "Category"
+        },
+        "contractor":{
+            "title": "Contractor"
+        } ,
+        "liability": {
+            "title": "Liability", 
+            "due-date": "Due date"
+        } 
+    },
+    "YNoptions" :{
+        "yes": "Yes",
+        "no": "No"
+    },
+    "comment": "Commentr",
+    "complete-button" : "Complete",
+    "next-button": "Next",
+    "back-button": "Back",
+    "save-button" : "Save",
+    "price-in-euro": "Price in Euro",
+    "table":{
+        "department": "Department",
+        "date": "Date",
+        "total": "Total",
+        "comment": "Comment",
+        "person": "Person",
+        "file-name": "File name",
+        "name": "First name",
+        "last-name":"Last name",
+        "Contact-person":"Contract person",
+        "type": "Type",
+        "price": "Price"
+    },
+    "payment-period":{
+        "annualy": "Annualy",
+        "quarterly":"quarterly",
+        "monthly": "Monthly"
+    },
+    "address":{
+        "street": "Street",
+        "house-number": "House nr.",
+        "zip-code": "Zip",
+        "city": "City"
+    },
+    "all-contracts" : "All contracts",
+    "contact-person": "Contract person",
+    "contract-number": "Contract number",
+    "company-name": "Company name",
+    "status":"Status",
+    "contract-type": "Contryct type",
+    "search": "Search",
+    "select-search-field-contract": "Choose search options",
+    "contactperson": "Contract person",
+    "search-all-contarcts": "Contract number/Status/Contract type...",
+    "company-registration-number": "Registration number",
+    "invalid-username": "Invalid username",
+    "invalid-password": "Invalid password",
+    "contractors": "Contractors",
+    "phone-number": "Phone number",
+    "amount": "Amount",
+    "recurring": "Recurring",
+    "standard-notification" : "Standard Notification",
+    "notification-type": "Notification type"
+}
