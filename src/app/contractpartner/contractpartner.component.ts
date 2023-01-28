@@ -7,10 +7,6 @@ import { Address } from './models/address';
 import { Info } from './models/info';
 import { ContractpartnerService } from './services/contractpartner.service';
 
-/* export interface Info {
-	email: string;
-	phonenumber: string;
-} */
 
 export interface Сontractpartner {
 	contactperson: string;
@@ -19,27 +15,6 @@ export interface Сontractpartner {
 	address?: Address;
 	info?: Info[];
 }
-
-
-/* const EXAMPLE_DATA: Сontractpartner[] = [
-	{
-		contactperson: 'Berger A.', registernumber: '63636', department: 'Abteilung1', street: 'Postgasse', homenumber: '12', district: '1020', city: 'Wien', firmname: 'firma2',
-		info: [{
-			email: 'email2@email.email',
-			phonenumber: '311111111'
-		}]
-	},
-	{
-		contactperson: 'Braun B.', registernumber: '15263', department: 'Abteilung2', street: 'Ringstrasse', homenumber: '32', district: '1030', city: 'Wien', firmname: 'firma',
-		info: [{
-			email: 'email2@email.email',
-			phonenumber: '311111111'
-		}]
-	}
-
-]; */
-
-
 
 
 @Component({
@@ -61,7 +36,6 @@ export class ContractpartnerComponent implements OnInit {
 	public allContactPartners: ContractPartner[] = [];
 	public contractPartners: ContractPartner[] = [];
 	
-	//dataSource = EXAMPLE_DATA;
   
 	expandedElement: Сontractpartner | null
 	columnsToDisplay: string[] = ['contactperson', 'registernumber', 'department', 'street', 'homenumber', 'district', 'city', 'edit'];

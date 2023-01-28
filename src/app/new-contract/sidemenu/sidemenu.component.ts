@@ -1,6 +1,6 @@
 import { NgForOf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { NavigationEnd, ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -30,7 +30,25 @@ export class SidemenuComponent {
     }
   ];
   
+  currentUrl;
+  sidemenuContract: boolean;
+
+
   constructor(private route: ActivatedRoute, private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+    
+        this.currentUrl = event.urlAfterRedirects;
+        console.log(event.urlAfterRedirects);
+        
+        if (this.currentUrl.split("/").includes("contract")) {
+          this.sidemenuContract = true;
+        } else  {
+          this.sidemenuContract = false;
+        }
+    
+      }
+    });
 
   }
   info(){

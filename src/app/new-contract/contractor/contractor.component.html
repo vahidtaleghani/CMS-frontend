@@ -3,8 +3,8 @@
     <div fxLayout="row">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/contract">Neuer Vertrag</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Vertragspartner</li>
+          <li class="breadcrumb-item"><a href="/contract">{{"new-contract.title" | translate}}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{"new-contract.contractor.title" | translate}}</li>
         </ol>
       </nav>
     </div>
@@ -14,7 +14,7 @@
 
 
       <div fxFlex="37" fxFlex.md="30">
-        <input type="text" class="form-control" placeholder="Firmennamen" aria-label="companyname"
+        <input type="text" class="form-control" placeholder="{{'company-name' | translate}}" aria-label="companyname"
         [value]="contractPartner !== undefined && contractPartner.CompanyName"
         [ngModel]="contractPartner !== undefined && contractPartner.CompanyName" required name="companyName"
         >
@@ -22,7 +22,7 @@
 
 
       <div fxFlex="37" fxFlex.md="30">
-        <input type="text" class="form-control" placeholder="Ansprechperson" aria-label="contactperson"
+        <input type="text" class="form-control" placeholder="{{'contactperson' | translate}}" aria-label="contactperson"
         [value]="contractPartner !== undefined && contractPartner.Person"
         [ngModel]="contractPartner !== undefined && contractPartner.Person" required name="person"
         >
@@ -30,14 +30,14 @@
 
 
       <div fxFlex="19" fxFlex.md="30">
-        <input type="text" class="form-control" placeholder="Firmenbuchnummer" aria-label="registernumber"
+        <input type="text" class="form-control" placeholder="{{'company-registration-number' | translate}}" aria-label="registernumber"
         [value]="contractPartner !== undefined && contractPartner.CompanyRegistrationNumber"
         [ngModel]="contractPartner !== undefined && contractPartner.CompanyRegistrationNumber" required name="companyRegistrationNumber"
         >
       </div>
 
       <div fxFlex="19" fxFlex.md="30">
-        <input type="text" class="form-control" placeholder="Abteilung" aria-label="department"
+        <input type="text" class="form-control" placeholder="{{'table.department' | translate}}" aria-label="department"
         [value]="contractPartner !== undefined && contractPartner.Department"
         [ngModel]="contractPartner !== undefined && contractPartner.Department" required name="department"
         >
@@ -45,7 +45,7 @@
 
 
       <div fxFlex="19">
-        <button type="submit" (click)="submit(myForm)" class="btn ">Speichern</button>
+        <button type="submit" (click)="submit(myForm)" class="btn ">{{'save-button' | translate}}</button>
         </div>
     </div>
   </div>
@@ -56,28 +56,28 @@
   <div fxLayout="row" class="row align-items-center" fxLayoutGap="19px" fxLayoutAlign="start center" fxLayoutAlign.sm="start" fxLayoutAlign.xs="start" fxLayout.sm="column" fxLayout.xs="column" class="my-2">
  
     <div fxFlex="39" fxFlex.md="47">
-        <input type="search" class="form-control" id="search" placeholder="Straße" aria-label="street"
+        <input type="search" class="form-control" id="search" placeholder="{{'address.street' | translate}}" aria-label="street"
         [value]="contractPartner !== undefined && contractPartner.Address.Street"
         [ngModel]="contractPartner !== undefined && contractPartner.Address.Street" required name="street"
         >
       </div>
 
       <div fxFlex="8" fxFlex.md="30">
-        <input type="text" class="form-control" placeholder="Hausnr." aria-label="homenumber"
+        <input type="text" class="form-control" placeholder="{{'address.house-number' | translate}}" aria-label="homenumber"
         [value]="contractPartner !== undefined && contractPartner.Address.HouseNumber"
         [ngModel]="contractPartner !== undefined && contractPartner.Address.HouseNumber" required name="houseNumber"
         >
       </div>
 
       <div fxFlex="9" fxFlex.md="30">
-        <input type="text" class="form-control" placeholder="PLZ" aria-label="district"
+        <input type="text" class="form-control" placeholder="{{'address.zip-code' | translate}}" aria-label="district"
         [value]="contractPartner !== undefined && contractPartner.Address.PostalCode"
         [ngModel]="contractPartner !== undefined && contractPartner.Address.PostalCode" required name="postalCode"
         >
       </div>
 
       <div fxFlex="19" fxFlex.md="30">
-        <input type="text" class="form-control" placeholder="Stadt" aria-label="city"
+        <input type="text" class="form-control" placeholder="{{'address.city' | translate}}" aria-label="city"
         [value]="contractPartner !== undefined && contractPartner.Address.City"
         [ngModel]="contractPartner !== undefined && contractPartner.Address.City" required name="city"
         >
@@ -97,7 +97,7 @@
 
 
     <div fxFlex="19" fxFlex.md="30">
-      <input type="text" class="form-control" placeholder="Tl.nr." aria-label="telnumber"
+      <input type="text" class="form-control" placeholder="{{'phone-number' | translate}}" aria-label="telnumber"
       [value]="contractPartner !== undefined && contractPartner.TelNumber"
       [ngModel]="contractPartner !== undefined && contractPartner.TelNumber" required name="telNumber"
       >
@@ -115,45 +115,45 @@
         
         <!-- contactperson Column -->
         <ng-container matColumnDef="contactperson">
-          <th mat-header-cell *matHeaderCellDef>Ansprechperson</th>
+          <th mat-header-cell *matHeaderCellDef>{{'contractperson' | translate}}</th>
           <td mat-cell *matCellDef="let element"> {{element.Person}}</td>
         </ng-container>
 
         <!-- registernumber Column -->
         <ng-container matColumnDef="registernumber">
-          <th mat-header-cell *matHeaderCellDef>Firmenbuchnummer</th>
+          <th mat-header-cell *matHeaderCellDef>{{'company-registration-number' | translate}}</th>
           <td mat-cell *matCellDef="let element"> {{element.CompanyRegistrationNumber}} </td>
         </ng-container>
 
         <!-- department Column -->
         <ng-container matColumnDef="department">
-          <th mat-header-cell *matHeaderCellDef>Abteilung</th>
+          <th mat-header-cell *matHeaderCellDef>{{'table.department' | translate}}</th>
           <td mat-cell *matCellDef="let element"> {{element.Department}} </td>
         </ng-container>
 
          <!-- street Column -->
          <ng-container matColumnDef="street">
-          <th mat-header-cell *matHeaderCellDef>Straße</th>
+          <th mat-header-cell *matHeaderCellDef>{{'address.street' | translate}}</th>
           <td mat-cell *matCellDef="let element"> {{element.Address.Street}} </td>
         </ng-container>
 
          <!-- homenumber Column -->
          <ng-container matColumnDef="homenumber">
-          <th mat-header-cell *matHeaderCellDef>Hausnr.</th>
+          <th mat-header-cell *matHeaderCellDef>{{'address.house-number' | translate}}</th>
           <td mat-cell *matCellDef="let element"> {{element.Address.HouseNumber}} </td>
         </ng-container>
          
 
          <!-- district Column -->
          <ng-container matColumnDef="district">
-          <th mat-header-cell *matHeaderCellDef>PLZ</th>
+          <th mat-header-cell *matHeaderCellDef>{{'address.zip-code' | translate}}</th>
           <td mat-cell *matCellDef="let element"> {{element.Address.PostalCode}} </td>
         </ng-container>
          
 
          <!-- city Column -->
          <ng-container matColumnDef="city">
-          <th mat-header-cell *matHeaderCellDef>Stadt</th>
+          <th mat-header-cell *matHeaderCellDef>{{'address.city' | translate}}</th>
           <td mat-cell *matCellDef="let element"> {{element.Address.City}} </td>
         </ng-container>
 

@@ -14,13 +14,13 @@
             <div class=" mb-2">
               <input type="email" [ngClass]="username.invalid && (username.dirty || username.touched) ? 'form-control is-invalid' : 'form-control'" id="username" placeholder="Benutzername" formControlName="username" >
               <div class="invalid-feedback" *ngIf="username.invalid && (username.dirty || username.touched)">
-                Ungültiger Benutzername
+                {{"invalid-username" | translate}}
               </div>
             </div>
             <div >
               <input type="password" [ngClass]="password.invalid && (password.dirty || password.touched) ? 'form-control is-invalid' : 'form-control' " id="password" placeholder="Passwort" formControlName="password" >  
               <div class="invalid-feedback" *ngIf="password.invalid && (password.dirty || password.touched)">
-                Ungültiges Passwort
+                {{"invalid-password" | translate}}
               </div>      
             </div> 
             <div>
@@ -30,9 +30,6 @@
           </form>
         </mat-card-content>
       </mat-card>
-      
-  
-  
       </div>
     </div>
 

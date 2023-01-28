@@ -3,14 +3,14 @@
       <div fxLayout="row">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/contract">Neuer Vertrag</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Verbindlichkeit</li>
+            <li class="breadcrumb-item"><a href="/contract">{{"new-contract.title" | translate}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{"new-contract.liability.title" | translate}}</li>
           </ol>
         </nav>
       </div>
       <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start" fxLayout.sm="column" fxLayout.xs="column">
         <div fxFlex="35" fxFlex.md="25">
-          <input type="text" onfocus="(this.type='date')" class="form-control " placeholder="Fälligkeitsdatum" aria-label="comment"
+          <input type="text" onfocus="(this.type='date')" class="form-control " placeholder="{{'new-contract.liability.due-date' | translate}}" aria-label="comment"
           [value]="liability!== undefined && liability.DueDate"
           [ngModel]="liability!== undefined && liability.DueDate" required name="dueDate"
           >
@@ -21,7 +21,7 @@
               [checked]="liability !== undefined && liability.PaymentPeriodId === 'Annually'"
               [ngModel]="liability!== undefined && liability.PaymentPeriodId" required name="paymentPeriodId"
               >
-            <label class="form-check-label" for="paymentPeriodY">Järlich</label>
+            <label class="form-check-label" for="paymentPeriodY">{{'payment-period.annualy' | translate}}</label>
           </div>
         </div>
           <div fxFlex="10" fxFlex.md = "12">
@@ -30,7 +30,7 @@
                 [checked]="liability !== undefined && liability.PaymentPeriodId === 'Quarterly'"
                 [ngModel]="liability!== undefined && liability.PaymentPeriodId" required name="paymentPeriodId"
                 >
-              <label class="form-check-label" for="paymentPeriodQ">Quartal</label>
+              <label class="form-check-label" for="paymentPeriodQ">{{'payment-period.quarterly' | translate}}</label>
             </div>
       </div>
       <div fxFlex="10" fxFlex.md = "12">
@@ -39,17 +39,17 @@
             [checked]="liability !== undefined && liability.PaymentPeriodId === 'Monthly'"
             [ngModel]="liability!== undefined && liability.PaymentPeriodId" required name="paymentPeriodId"
             >
-          <label class="form-check-label" for="paymentPeriodM">Monatlich</label>
+          <label class="form-check-label" for="paymentPeriodM">{{'payment-period.monthly' | translate}}</label>
         </div>
   </div>
   <div fxFlex="35" fxFlex.md="25">
-    <input type="number" step=0.01 class="form-control" placeholder="Preis in Euro" aria-label="preisEU"
+    <input type="number" step=0.01 class="form-control" placeholder="{{'price-in-euro' | translate}}" aria-label="preisEU"
     [value]="liability!== undefined && liability.Cost !== 0 && liability.Cost"
     [ngModel]="liability!== undefined && liability.Cost" required name="cost"
     >
   </div>
         <div fxFlex="20">
-          <button type="submit" (click)="submit(myForm)" class="btn ">Speichern</button>
+          <button type="submit" (click)="submit(myForm)" class="btn ">{{'save-button' | translate}}</button>
         </div>
       </div>
   
@@ -59,28 +59,28 @@
   
             <!-- Date Column -->
             <ng-container matColumnDef="date">
-              <th mat-header-cell *matHeaderCellDef>Datum</th>
+              <th mat-header-cell *matHeaderCellDef>{{'table.date' | translate}}</th>
               <td mat-cell *matCellDef="let element"> {{element.DueDate | date:'yyyy-MM-dd'}} </td>
-              <td mat-footer-cell *matFooterCellDef class="table-footer">Summe</td>
+              <td mat-footer-cell *matFooterCellDef class="table-footer">{{'table.total' | translate}}</td>
             </ng-container>
   
             <!-- Monthly Column -->
             <ng-container matColumnDef="monthly">
-              <th mat-header-cell *matHeaderCellDef>Monatlich</th>
+              <th mat-header-cell *matHeaderCellDef>{{'payment-period.monthly' | translate}}</th>
               <td mat-cell *matCellDef="let element"> {{(element.PaymentPeriodId === 'Monthly' ? element.Cost : '' )| currency: 'EUR'}} </td>
               <td mat-footer-cell *matFooterCellDef class="table-footer"> {{getTotalCost('Monthly') | currency: 'EUR'}} </td>
             </ng-container>
 
             <!-- Quarterly Column -->
             <ng-container matColumnDef="quarterly">
-                <th mat-header-cell *matHeaderCellDef>Quartal</th>
+                <th mat-header-cell *matHeaderCellDef>{{'payment-period.quarterly' | translate}}</th>
                 <td mat-cell *matCellDef="let element"> {{(element.PaymentPeriodId === 'Quarterly' ? element.Cost : '') | currency: 'EUR'}} </td>
                 <td mat-footer-cell *matFooterCellDef class="table-footer"> {{getTotalCost('Quarterly') | currency: 'EUR'}} </td>
               </ng-container>
 
             <!-- Jährlich Column -->
             <ng-container matColumnDef="annually">
-              <th mat-header-cell *matHeaderCellDef>Järlich</th>
+              <th mat-header-cell *matHeaderCellDef>{{'payment-period.annualy' | translate}}</th>
               <td mat-cell *matCellDef="let element"> {{(element.PaymentPeriodId === 'Annually' ? element.Cost : '') | currency: 'EUR'}} </td>
               <td mat-footer-cell *matFooterCellDef class="table-footer"> {{getTotalCost('Annually') | currency: 'EUR'}} </td>
             </ng-container>

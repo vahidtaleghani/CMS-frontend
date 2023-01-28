@@ -11,14 +11,14 @@ export class AppComponent implements OnInit {
 
   constructor(private router: Router,
     private translate: TranslateService) {
-      translate.setDefaultLang('de');
+      translate.addLangs(['en', 'de']);
       translate.use('de');
     
                }
 
-  isSidenavOpen:boolean = false;
-
+  isSidenavOpen:boolean = false;         
   title = 'CMS';
+  language = 'de';  
 ngOnInit(): void {
   if (!localStorage.getItem('token')) {
     this.router.navigate(['/login'])
@@ -38,8 +38,17 @@ ngOnInit(): void {
     } else {
       return false;
     }
+  }
 
-
+  changeLanguage() {
+    if (this.language == 'de') {
+      this.language = 'en';
+      this.translate.use('en');
+    }
+    else {
+      this.language = 'de';
+      this.translate.use('de');
+    }
 
 
   }

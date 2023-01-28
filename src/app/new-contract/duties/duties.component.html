@@ -3,22 +3,22 @@
     <div fxLayout="row">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/contract">Neuer Vertrag</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Pflichten über Vertragsdauer hinaus</li>
+          <li class="breadcrumb-item"><a href="/contract">{{"new-contract.title" | translate}}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{"new-contract.duties.title" | translate}}</li>
         </ol>
       </nav>
     </div>
     <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start" fxLayout.sm="column" fxLayout.xs="column">
       <!-- Date -->
       <div fxFlex="17" fxFlex.md="15">
-        <input placeholder="Datum" class="form-control" type="text" onfocus="(this.type='date')" id="Date"
+        <input placeholder="{{'table.date' | translate}}" class="form-control" type="text" onfocus="(this.type='date')" id="Date"
         [ngModel]="duty !== undefined && duty.Date" required name="date">
       </div>
       <!-- Typ -->
       <div fxFlex="17" fxFlex.md="15">
         <select class="form-select" aria-label="category" name="dutyTypeId"
           [ngModel]="duty !== undefined && duty.DutyTypeId" required name="dutyTypeId">
-          <option [selected]="duty === undefined" disabled>Typ</option>
+          <option [selected]="duty === undefined" disabled>{{'table.type' | translate}}</option>
           <option *ngFor="let type of dutyTypes" [value]=""
             [selected]="duty !== undefined && duty.DutyTypeId === type.Type">
             {{type.Type}}
@@ -28,13 +28,13 @@
       </div>
       <!-- Kommentar -->
       <div fxFlex="50" fxFlex.md="35">
-        <input type="text" class="form-control" placeholder="Kommentar" aria-label="comment"
+        <input type="text" class="form-control" placeholder="{{'comment' | translate}}" aria-label="comment"
         [ngModel]="duty !== undefined && duty.Comment" required name="comment">
       </div>
 
 
       <div fxFlex="15">
-        <button type="button" (click)="submit(myForm)" class="btn">Speichern</button>
+        <button type="button" (click)="submit(myForm)" class="btn">{{'save-button' | translate}}</button>
       </div>
     </div>
   </div>
@@ -45,19 +45,19 @@
 
         <!-- Date Column -->
         <ng-container matColumnDef="date">
-          <th mat-header-cell *matHeaderCellDef>Datum</th>
+          <th mat-header-cell *matHeaderCellDef>{{'table.date' | translate}}</th>
           <td mat-cell *matCellDef="let element"> {{element.Date | date:'yyyy-MM-dd'}} </td>
         </ng-container>
 
         <!-- Typ Column -->
         <ng-container matColumnDef="typ">
-          <th mat-header-cell *matHeaderCellDef>Typ</th>
+          <th mat-header-cell *matHeaderCellDef>{{'table.type' | translate}}</th>
           <td mat-cell *matCellDef="let element"> {{element.DutyTypeId}} </td>
         </ng-container>
 
         <!-- Kommentar Column -->
         <ng-container matColumnDef="comment">
-          <th mat-header-cell *matHeaderCellDef>Kommentar</th>
+          <th mat-header-cell *matHeaderCellDef>{{'comment' | translate}}</th>
           <td mat-cell *matCellDef="let element"> {{element.Comment}} </td>
         </ng-container>
 

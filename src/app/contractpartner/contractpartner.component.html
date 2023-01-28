@@ -10,8 +10,7 @@
 		<div fxLayout="row">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="/contractpartner">Vertragspartner</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Alle Verträge</li>
+					<li class="breadcrumb-item active" aria-current="page"><a href="/contractpartner">{{"contractors" | translate}}</a></li>
 				</ol>
 			</nav>
 		</div> 
@@ -23,45 +22,45 @@
 	<table mat-table [dataSource]="contractPartners" multiTemplateDataRows class="mat-elevation-z8">
 		<!-- contactperson Column -->
         <ng-container matColumnDef="contactperson">
-			<th mat-header-cell *matHeaderCellDef>Ansprechperson</th>
+			<th mat-header-cell *matHeaderCellDef>{{"contact-person" | translate}}</th>
 			<td mat-cell *matCellDef="let element"> {{element.Person}}</td>
 		  </ng-container>
   
 		  <!-- registernumber Column -->
 		  <ng-container matColumnDef="registernumber">
-			<th mat-header-cell *matHeaderCellDef>Firmenbuchnummer</th>
+			<th mat-header-cell *matHeaderCellDef>{{"company-registration-number" | translate}}</th>
 			<td mat-cell *matCellDef="let element"> {{element.CompanyRegistrationNumber}} </td>
 		  </ng-container>
   
 		  <!-- department Column -->
 		  <ng-container matColumnDef="department">
-			<th mat-header-cell *matHeaderCellDef>Abteilung</th>
+			<th mat-header-cell *matHeaderCellDef>{{"table.department" | translate}}</th>
 			<td mat-cell *matCellDef="let element"> {{element.Department}} </td>
 		  </ng-container>
   
 		   <!-- street Column -->
 		   <ng-container matColumnDef="street">
-			<th mat-header-cell *matHeaderCellDef>Straße</th>
+			<th mat-header-cell *matHeaderCellDef>{{"address.street" | translate}}</th>
 			<td mat-cell *matCellDef="let element"> {{element.Address.Street}} </td>
 		  </ng-container>
   
 		   <!-- homenumber Column -->
 		   <ng-container matColumnDef="homenumber">
-			<th mat-header-cell *matHeaderCellDef>Hausnr.</th>
+			<th mat-header-cell *matHeaderCellDef>{{"address.house-number" | translate}}</th>
 			<td mat-cell *matCellDef="let element"> {{element.Address.HouseNumber}} </td>
 		  </ng-container>
 		   
   
 		   <!-- district Column -->
 		   <ng-container matColumnDef="district">
-			<th mat-header-cell *matHeaderCellDef>PLZ</th>
+			<th mat-header-cell *matHeaderCellDef>{{"address.zip-code" | translate}}</th>
 			<td mat-cell *matCellDef="let element"> {{element.Address.PostalCode}} </td>
 		  </ng-container>
 		   
   
 		   <!-- city Column -->
 		   <ng-container matColumnDef="city">
-			<th mat-header-cell *matHeaderCellDef>Stadt</th>
+			<th mat-header-cell *matHeaderCellDef>{{"address.city" | translate}}</th>
 			<td mat-cell *matCellDef="let element"> {{element.Address.City}} </td>
 		  </ng-container>
   
@@ -92,7 +91,7 @@
 							</div> 
 						</ng-container> -->
 						<table #innerTables mat-table [dataSource]="element.info" >
-							<ng-container matColumnDef="{{innerColumn}}" *ngFor="let innerColumn of columnsToDisplayHidden">
+							<ng-container matColumnDef="{{innerColumn | translate}}" *ngFor="let innerColumn of columnsToDisplayHidden">
 							  <th mat-header-cell *matHeaderCellDef > {{innerColumn}} </th>
 							  <td mat-cell *matCellDef="let element"> {{element[innerColumn]}} </td>
 							</ng-container>
@@ -132,10 +131,10 @@
 	>
 		<div fxFlex="73" fxFlex.md="61" fxFlex.sm="0" fxFlex.xs="0"></div>
 		<div fxFlex="7" fxFlex.md="19" fxFlex.sm="50" fxFlex.xs="24">
-			<button type="button" class="btn return-btn">Zurück</button>
+			<button type="button" class="btn return-btn">{{"back-button" | translate}}</button>
 		</div>
 		<div fxFlex="20" fxFlex.sm="40">
-			<button type="button" class="btn">Weiter</button>
+			<button type="button" class="btn">{{"-button" | translate}}</button>
 		</div>
 	</div>
 </div>

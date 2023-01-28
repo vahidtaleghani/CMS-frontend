@@ -1,7 +1,8 @@
 {
     "menu": {
         "contracts": "Verträge",
-        "text": "This is a simple demonstration app for ngx-translate"
+        "contractors": "Vertragspartner",
+        "notifications": "Notifikationen"
     },
     "new-contract":{
         "title": "Neuer Vertrag",
@@ -37,6 +38,10 @@
             "title": "Vertragsdatei",
             "final": "Final"
         },
+        "penalty":{
+            "title": "Pönale",
+            "period": "Frist"
+        },
         "signed" :{
             "title": "Unterzeichnet", 
             "name": "Name",
@@ -44,8 +49,23 @@
             "signed": "Unterzeichnet",
             "fully-signed": "Vollständig unterzeichnet"
         }, 
-        "contractor": "Vertragspartner",
-        "liability": "Verbindkichkeit"
+        "notification":{
+            "title": "Notifikation"
+        },
+        "duties": {
+            "title": "Pflichten über Vertragsdauer hinaus"
+        },
+        "categorization":{
+            "title": "Kategorisierung",
+            "category": "Kategorie"
+        },
+        "contractor":{
+            "title": "Vertragspartner"
+        } ,
+        "liability": {
+            "title": "Verbindkichkeit", 
+            "due-date": "Fälligkeitsdatum"
+        } 
     },
     "YNoptions" :{
         "yes": "Ja",
@@ -66,12 +86,20 @@
         "file-name": "Dateiname",
         "name": "Name",
         "last-name":"Nachname",
-        "Contact-person":"Ansprechperson"
+        "Contact-person":"Ansprechperson",
+        "type": "Typ",
+        "price": "Preis"
     },
     "payment-period":{
         "annualy": "Järlich",
         "quarterly":"Quartal",
         "monthly": "Monatlich"
+    },
+    "address":{
+        "street": "Straße",
+        "house-number": "Hausnr.",
+        "zip-code": "PLZ",
+        "city": "Stadt"
     },
     "all-contracts" : "Alle Verträge",
     "contact-person": "Ansprechperson",
@@ -81,6 +109,15 @@
     "contract-type": "Vertragstyp",
     "search": "Suchen",
     "select-search-field-contract": "Suchoptionen auswählen",
-    "contactperson": "Ansprechperson"
-
+    "contactperson": "Ansprechperson",
+    "search-all-contarcts": "Vertragsnummer/Status/Vertragstyp...",
+    "company-registration-number": "Firmenbuchnummer",
+    "invalid-username": "Ungültiger Benutzername",
+    "invalid-password": "Ungültiges Passwort",
+    "contractors": "Vertragspartner",
+    "phone-number": "Telefonnummer",
+    "amount": "Menge",
+    "recurring": "Wiederkehrend",
+    "standard-notification" : "Standard Notifikation",
+    "notification-type": "Notaficationtyp"
 }

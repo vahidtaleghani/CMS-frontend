@@ -1,19 +1,18 @@
 <mat-nav-list role="list">
-    <mat-list-item >Dashboard</mat-list-item>
-    <mat-list-item >{{'new-contract.title' | translate}}</mat-list-item>
-    <mat-list-item class="sublist" routerLink="./info">{{'new-contract.general-information.title' | translate}}</mat-list-item>
-    <mat-list-item class="sublist" routerLink="./contractor" >Vertragspartner</mat-list-item>
-    <mat-list-item class="sublist" routerLink="./liability" >Verbindkichkeit</mat-list-item>
-    <mat-list-item class="sublist" routerLink="./claim">{{'new-contract.claim.title' | translate}}</mat-list-item>
+    <mat-list-item routerLink="/home">Dashboard</mat-list-item>
+    <mat-list-item *ngIf="sidemenuContract">{{'new-contract.title' | translate}}</mat-list-item>
+    <mat-list-item *ngIf="sidemenuContract" class="sublist" routerLink="./info">{{'new-contract.general-information.title' | translate}}</mat-list-item>
+    <mat-list-item *ngIf="sidemenuContract"class="sublist" routerLink="./contractor" >{{'new-contract.contractor.title' | translate}}</mat-list-item>
+    <mat-list-item *ngIf="sidemenuContract"class="sublist" routerLink="./liability" >{{'new-contract.liability.title' | translate}}</mat-list-item>
+    <mat-list-item *ngIf="sidemenuContract"class="sublist" routerLink="./claim">{{'new-contract.claim.title' | translate}}</mat-list-item>
     <!-- <mat-list-item class="sublist" >Ansprechperson</mat-list-item> -->
-    <mat-list-item class="sublist"  routerLink="./affected-department">{{'new-contract.affected-department.title' | translate}}</mat-list-item>
-    <mat-list-item class="sublist" routerLink="./fine" >Pönale</mat-list-item>
-    <mat-list-item class="sublist" routerLink="./categorization" >Kategorisierung</mat-list-item>
-    <mat-list-item class="sublist" routerLink="./duties" >Pflichten über Vertragsdauer hinaus</mat-list-item>
-    <mat-list-item class="sublist" routerLink="./notification" >Notifikation</mat-list-item>
-    <mat-list-item class="sublist" routerLink="./comments">{{'new-contract.comments.title' | translate}}</mat-list-item>
-    <mat-list-item class="sublist" routerLink="./signed" >{{'new-contract.signed.title' | translate}}</mat-list-item>
-    <mat-list-item class="sublist" routerLink="./files" >{{'new-contract.files.title' | translate}}</mat-list-item> 
-    <mat-list-item routerLink="./all-contracts" > {{'all-contracts' | translate}}</mat-list-item>
+    <mat-list-item  *ngIf="sidemenuContract" class="sublist"  routerLink="./affected-department">{{'new-contract.affected-department.title' | translate}}</mat-list-item>
+    <mat-list-item *ngIf="sidemenuContract"class="sublist" routerLink="./fine" >{{'new-contract.penalty.title' | translate}}</mat-list-item>
+    <mat-list-item *ngIf="sidemenuContract"class="sublist" routerLink="./categorization" >{{'new-contract.categorization.title' | translate}}</mat-list-item>
+    <mat-list-item *ngIf="sidemenuContract"class="sublist" routerLink="./duties" >{{'new-contract.duties.title' | translate}}</mat-list-item>
+    <mat-list-item *ngIf="sidemenuContract"class="sublist" routerLink="./notification" >{{'new-contract.notification.title' | translate}}</mat-list-item>
+    <mat-list-item *ngIf="sidemenuContract"class="sublist" routerLink="./comments">{{'new-contract.comments.title' | translate}}</mat-list-item>
+    <mat-list-item *ngIf="sidemenuContract"class="sublist" routerLink="./signed" >{{'new-contract.signed.title' | translate}}</mat-list-item>
+    <mat-list-item *ngIf="sidemenuContract"class="sublist" routerLink="./files" >{{'new-contract.files.title' | translate}}</mat-list-item> 
 </mat-nav-list>
 

@@ -21,7 +21,7 @@ import { AllContractsComponent } from './all-contracts/all-contracts.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'contract', component: ContractComponent},
-  { path: 'Vertragspartner', component: ContractpartnerComponent },
+  { path: 'contractor', component: ContractpartnerComponent },
   { path: 'home', component: HomeComponent },
   
   { path: 'contract', component: ContractComponent,

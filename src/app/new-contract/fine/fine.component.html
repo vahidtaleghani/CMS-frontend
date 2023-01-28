@@ -3,8 +3,8 @@
       <div fxLayout="row">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/contract">Neuer Vertrag</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Pönale</li>
+            <li class="breadcrumb-item"><a href="/contract">{{"new-contract.title" | translate}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{"new-contract.penalty.title" | translate}}</li>
           </ol>
         </nav>
       </div>
@@ -14,7 +14,7 @@
           <select class="form-select" aria-label="deadline" name="deadline"
           [ngModel]="fine !== undefined && fine.Deadline" required name="deadline"
           >
-              <option [selected]="fine !== undefined && fine.Deadline === ''" disabled>Frist</option>
+              <option [selected]="fine !== undefined && fine.Deadline === ''" disabled>{{"new-contract.penalty.period" | translate}}</option>
               <option *ngFor="let deadline of deadlines" [selected]="fine !== undefined && fine.Deadline === deadline.Type">
                   {{deadline.Type}}
               </option>
@@ -23,11 +23,11 @@
 <!-- Preis -->
 
       <div fxFlex="10" >
-        <label class="col-form-label" aria-label="price" >Preis in Euro:</label> 
+        <label class="col-form-label" aria-label="price" >{{"price-in-euro" | translate}}:</label> 
     </div>
 
     <div fxFlex="10" fxFlex.md="35">
-        <input type="text" class="form-control" placeholder="Menge" aria-label="menge"
+        <input type="text" class="form-control" placeholder="{{'amount' | translate}}" aria-label="menge"
         [value]="fine !== undefined && fine.Price !== 0 && fine.Price"
         [ngModel]="fine !== undefined && fine.Price" required name="price"
         >
@@ -35,7 +35,7 @@
 
   <!-- Kommentar -->
       <div fxFlex="70" fxFlex.md="35">
-        <input type="text" class="form-control" id="comment" placeholder="Kommentar" aria-label="comment"
+        <input type="text" class="form-control" id="comment" placeholder="{{'comment' | translate}}" aria-label="comment"
         [value]="fine !== undefined && fine.Comment"
         [ngModel]="fine !== undefined && fine.Comment" required name="comment"
         >
@@ -43,7 +43,7 @@
 
 
           <div fxFlex="20">
-              <button type="button" (click)="submit(myForm)" class="btn">Speichern</button>
+              <button type="button" (click)="submit(myForm)" class="btn">{{'save-button' | translate}}</button>
           </div>
         </div>
 
@@ -55,19 +55,19 @@
       
         <!-- Deadline Column -->
         <ng-container matColumnDef="deadline">
-          <th mat-header-cell *matHeaderCellDef>Frist</th>
+          <th mat-header-cell *matHeaderCellDef>{{"new-contract.penalty.period" | translate}}</th>
           <td mat-cell *matCellDef="let element"> {{element.Deadline}} </td>
         </ng-container>
       
    <!-- Price Column -->
    <ng-container matColumnDef="price">
-    <th mat-header-cell *matHeaderCellDef>Preis</th>
+    <th mat-header-cell *matHeaderCellDef>{{"table.price" | translate}}</th>
     <td mat-cell *matCellDef="let element"> {{element.Price}} </td>
   </ng-container>
 
         <!-- Comment Column -->
         <ng-container matColumnDef="comment">
-          <th mat-header-cell *matHeaderCellDef>Kommentar</th>
+          <th mat-header-cell *matHeaderCellDef>{{"comment" | translate}}</th>
           <td mat-cell *matCellDef="let element"> {{element.Comment}} </td>
         </ng-container>
       
