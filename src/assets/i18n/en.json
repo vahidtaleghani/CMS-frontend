@@ -23,8 +23,8 @@
             "project-name": "Project name"
         },
         "affected-department":{
-            "title": "Interne Ansprechperson",
-            "select-department": "Abteilung auswählen"
+            "title": "Internal contact person",
+            "select-department": "Select department"
         },
         "claim":{
             "title": "Claim",
