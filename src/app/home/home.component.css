@@ -1,0 +1,77 @@
+.container{
+    padding-top: 1.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    height: 100%;
+    vertical-align: middle;
+    display: grid;
+}
+
+@media (min-width: 960px) {
+    .container {
+        padding-top: 2rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-bottom: 2rem;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column-reverse;
+        justify-content: space-around;
+    }
+  }
+
+.app-card {
+    background: #00649C;
+    background-color: rgba(0, 100, 156, 0.2);
+    border-radius: 10px;
+    text-align: left;
+    color: #514E4E;
+}
+:host ::ng-deep .app-card {
+    height: 100px;
+    padding: 0;
+    
+}
+
+:host ::ng-deep .app-card  div.card-edit{
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    justify-content: center;
+
+    height: inherit;
+    margin: 0;
+    vertical-align: top;
+}
+
+.column-home{
+
+    margin-top: 1.5rem;
+    display: grid !important;
+    grid-template-columns:[space1-start] 15% [space1-end col1-start] auto [col1-end spacebtw-start] 1.5rem [spacebtw-end col2-start] auto[col2-end space2-start] 15% [space2-end]
+}
+
+.col1 {
+    display: flex;
+    margin-right: 0 !important;
+    grid-column: 2 / span 1;
+
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.col2 {
+    display: flex;
+    grid-column: 4 /span 1;
+
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+
+

@@ -122,5 +122,6 @@
     "notification-type": "Notification type",
     "companyname": "Company name", 
     "contactnumber": "Contract number", 
-    "contracttype": "Contract type"
+    "contracttype": "Contract type",
+    "newcontract": "New contract"
 }
