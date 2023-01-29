@@ -123,5 +123,6 @@
     "companyname": "Firmenname", 
     "contactnumber": "Vertragsnummer", 
     "contracttype": "Vertragstyp",
-    "newcontract": "Neuer Vertrag"
+    "newcontract": "Neuer Vertrag",
+    "contractperson": "Ansprechperson"
 }

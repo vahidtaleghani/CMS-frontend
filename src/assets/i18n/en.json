@@ -109,7 +109,7 @@
     "contract-type": "Contract type",
     "search": "Search",
     "select-search-field-contract": "Choose search options",
-    "contactperson": "Contract person",
+    "contactperson": "Contact person",
     "search-all-contarcts": "Contract number/Status/Contract type...",
     "company-registration-number": "Registration number",
     "invalid-username": "Invalid username",
@@ -123,5 +123,6 @@
     "companyname": "Company name", 
     "contactnumber": "Contract number", 
     "contracttype": "Contract type",
-    "newcontract": "New contract"
+    "newcontract": "New contract",
+    "contractperson": "Contact person"
 }
