@@ -11,9 +11,9 @@
       <div fxLayout="row" fxLayoutAlign="space-between" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px grid">
         
         <div fxFlex="" >
-          <input type="text" class="form-control" placeholder="{{'search-all-contarcts'| translate }}" aria-label="name"
+          <input type="text" (keyup)="submit(myForm)" class="form-control" placeholder="{{'search-all-contarcts'| translate }}" aria-label="name"
           [value]=""
-          [ngModel]="" required name="personName"
+          [(ngModel)]="searchText" required name="personName"
           >
         </div>
 
@@ -27,7 +27,8 @@
            bindLabel="name"
            bindValue="id"
            placeholder = "{{'select-search-field-contract'| translate }}"
-           [(ngModel)]="selectedItems">
+           [(ngModel)]="selectedItems"
+           required name="items">
           </ng-select>
 
 
@@ -37,7 +38,7 @@
       
           
           <div fxFlex="15" fxFlex.md="20" fxFlex.sm="100" fxFlex.xs="100">
-              <button type="button" class="btn ">{{'search' | translate}}</button>
+              <button type="button" (click)="submit(myForm)" class="btn ">{{'search' | translate}}</button>
           </div>
       </div>
         <div fxFlex="100" [style.margin-top]="'3em'" *ngIf="!(contractData.length > 9)">

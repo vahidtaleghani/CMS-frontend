@@ -16,7 +16,7 @@ export class ContractComponent implements OnInit {
   ngOnInit(): void {
     console.log("Hello");
     alert(this.getCurrentUrl());
-    if (this.getCurrentUrl() === '/contract') {
+    if (this.getCurrentUrl() === '/contract/all-contracts') {
       console.log("send req");
       this.service.getContractStatus().subscribe(res => {
         console.log(res);
