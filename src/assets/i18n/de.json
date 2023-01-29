@@ -119,5 +119,10 @@
     "amount": "Menge",
     "recurring": "Wiederkehrend",
     "standard-notification" : "Standard Notifikation",
-    "notification-type": "Notaficationtyp"
+    "notification-type": "Notaficationtyp",
+    "companyname": "Firmenname", 
+    "contactnumber": "Vertragsnummer", 
+    "contracttype": "Vertragstyp",
+    "newcontract": "Neuer Vertrag",
+    "contractperson": "Ansprechperson"
 }

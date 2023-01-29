@@ -109,7 +109,7 @@
     "contract-type": "Contract type",
     "search": "Search",
     "select-search-field-contract": "Choose search options",
-    "contactperson": "Contract person",
+    "contactperson": "Contact person",
     "search-all-contarcts": "Contract number/Status/Contract type...",
     "company-registration-number": "Registration number",
     "invalid-username": "Invalid username",
@@ -119,5 +119,10 @@
     "amount": "Amount",
     "recurring": "Recurring",
     "standard-notification" : "Standard Notification",
-    "notification-type": "Notification type"
+    "notification-type": "Notification type",
+    "companyname": "Company name", 
+    "contactnumber": "Contract number", 
+    "contracttype": "Contract type",
+    "newcontract": "New contract",
+    "contractperson": "Contact person"
 }

@@ -93,3 +93,43 @@ td.mat-cell:first-of-type{
 :host ::ng-deep span.selected-item-container.ng-star-inserted {
     opacity: 1!important;
 }
+
+::ng-deep .ng-select {
+    height: 36.5px ;
+    color: #514E4E;
+    font-size: 15px;
+    border-color: #ced4da !important;
+}
+
+::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value .ng-value-label {
+    background-color: rgba(0, 100, 156, 0.2);
+    color: #514E4E;
+}
+
+::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value .ng-value-icon.left {
+    background-color: rgba(0, 100, 156, 0.2) !important;
+    color: #514E4E;
+}
+
+::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected, .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked {
+    background-color: rgba(0, 100, 156, 0.2) !important;
+}
+
+::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+    background-color: white;
+}
+
+::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected{
+    background-color: white !important;
+}
+
+::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected, .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked {
+    background-color: white !important;
+}
+
+::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-placeholder {
+        align-content: center;
+        position:unset !important;
+        color: #212529;
+        opacity: 0.7;
+}
