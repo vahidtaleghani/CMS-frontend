@@ -119,5 +119,8 @@
     "amount": "Amount",
     "recurring": "Recurring",
     "standard-notification" : "Standard Notification",
-    "notification-type": "Notification type"
+    "notification-type": "Notification type",
+    "companyname": "Company name", 
+    "contactnumber": "Contract number", 
+    "contracttype": "Contract type"
 }

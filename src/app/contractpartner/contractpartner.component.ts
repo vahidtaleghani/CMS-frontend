@@ -39,7 +39,7 @@ export class ContractpartnerComponent implements OnInit {
   
 	expandedElement: Сontractpartner | null
 	columnsToDisplay: string[] = ['contactperson', 'registernumber', 'department', 'street', 'homenumber', 'district', 'city', 'edit'];
-	columnsToDisplayHidden: string[] = ['email', 'telNumber'];
+	columnsToDisplayHidden: string[] = ['companyname', 'contactnumber', 'contracttype', 'contactperson', 'status'];
 	constructor(private service: ContractpartnerService) {
 		this.getAllContractPartners();
 	}
