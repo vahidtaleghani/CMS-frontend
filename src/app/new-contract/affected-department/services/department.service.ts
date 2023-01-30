@@ -20,7 +20,7 @@ export class DepartmentService {
   }
 
   getSelectedDepartments(){
-    return this.http.get<any>(BASEURL  + 'Department');
+    return this.http.get<any>(BASEURL  + 'Department/'+parseInt(sessionStorage.getItem('Id') as string));
   }
 
 

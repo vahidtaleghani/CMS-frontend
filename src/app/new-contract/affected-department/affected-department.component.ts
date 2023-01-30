@@ -63,18 +63,19 @@ export class AffectedDepartmentComponent implements OnInit {
     let departments: DepartmentType[] = [];
 
     this.service.getAllDepartments().subscribe(data => {
-      console.log(data);
+      // console.log(data);
+
       departments = data['Data'];
 
       departments.forEach(element => {
         this.dropdownList.push(new DepartmentType(element['Id'], element['Name']));
       })
 
-      // this.dropdownList = this.allDepartments;
+      this.dropdownList = this.allDepartments;
     })
-
-    //console.log(this.allDepartments);
-
+    console.log(this.allDepartments);
+    console.log(this.dropdownList);
+    
   }
 
   getDepartmentNameById(id: number): string {
@@ -92,13 +93,14 @@ export class AffectedDepartmentComponent implements OnInit {
 
     this.service.getAllDepartments().subscribe(data => {
       departments = data['Data'];
-
+        
       departments.forEach(element => {
         this.allDepartments.push(new DepartmentType(element['Id'], element['Name']));
       })
 
       this.dropdownList = this.allDepartments;
-
+      console.log(this.dropdownList);
+      
       this.getSelectedDepartments();
     })
   }
@@ -106,6 +108,8 @@ export class AffectedDepartmentComponent implements OnInit {
   getSelectedDepartments() {
     let selectedDepartments: Department[] = [];
      this.service.getSelectedDepartments().subscribe(data => {
+      // console.log
+      // (data['Data']);
       data['Data'] = data['Data']?.sort((a, b) => (a.DepartmentTypeId > b.DepartmentTypeId ? 1 : -1));
       (data['Data']).forEach(element => {
         selectedDepartments.push(new Department(element['Id'],element['ContractId'],this.getDepartmentNameById(element['DepartmentTypeId']),element['PersonName']));
@@ -120,6 +124,7 @@ export class AffectedDepartmentComponent implements OnInit {
     console.log(departmentForm.value['personName']);
     departmentForm.value['department'].forEach(element => {
       const department = {
+        'contractId': parseInt(sessionStorage.getItem('Id') as string),
         'Id': element.id,
         'DepartmentTypeId': this.getDepartmentIdByName(element.name),
         'PersonName' : departmentForm.value['personName']

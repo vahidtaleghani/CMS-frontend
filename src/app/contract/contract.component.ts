@@ -14,16 +14,13 @@ export class ContractComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private service: ContractService) { }
 
   ngOnInit(): void {
-    console.log("Hello");
-    alert(this.getCurrentUrl());
-    if (this.getCurrentUrl() === '/contract/all-contracts') {
+     if (/*this.getCurrentUrl() === '/contract/all-contracts' ||*/ this.getCurrentUrl() === '/contract/info') {
       console.log("send req");
       this.service.getContractStatus().subscribe(res => {
         console.log(res);
         if (res) {
           const proceed = confirm("Are you sure you want to start a new contract?");
           if(proceed){
-            alert("N")
             this.startNewContract();
           }
           else{

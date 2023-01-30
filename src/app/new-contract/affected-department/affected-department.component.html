@@ -21,7 +21,7 @@
 
         <div fxFlex="40" fxFlex.md="30">
 
-          <ng-select class="custom-select"
+          <!-- <ng-select class="custom-select"
           [items]="dropdownList"
           [multiple]="true"
           [closeOnSelect]="false"
@@ -31,9 +31,9 @@
            name="department"
            placeholder="{{'new-contract.affected-department.select-department' | translate}}"
            [(ngModel)]="selectedItems" required>
-          </ng-select>
+          </ng-select> -->
 
-          <!--<ng-multiselect-dropdown
+          <ng-multiselect-dropdown
           placeholder="{{'new-contract.affected-department.select-department' | translate}}"
           [settings]="dropdownSettings"
           [data]="dropdownList"
@@ -42,7 +42,7 @@
           (onSelectAll)="onSelectAll($event)"
           (onDeSelect)="onItemRemove($event)"
         >
-        </ng-multiselect-dropdown> -->
+        </ng-multiselect-dropdown>
         </div>
 
         <div fxFlex="20">
