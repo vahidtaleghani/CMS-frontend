@@ -15,8 +15,21 @@ export class ContractpartnerService {
   
   constructor(private http: HttpClient) { }
 
+  getContractTypeOptions(): Observable<any[]> {
+    const response = this.http.get<any>(BASEURL+ 'ContractType');
+    console.log(response);
+    return response;
+   }
+ 
+   getContractStatusOptions(): Observable<any[]> {
+    const response = this.http.get<any>(BASEURL+ 'ContractStatus');
+    console.log(response);
+    return response;
+   }
+
   getAllContractPartners() : Observable<any[]> {
-    const response = this.http.get<any>(BASEURL+ 'Contractor'+ '/allContractor');
+    const response = this.http.get<any>(BASEURL+ 'Contractor'+ '/allContractors');
+    console.log(response);
     return response;
    }
 
