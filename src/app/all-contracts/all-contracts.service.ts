@@ -15,7 +15,6 @@ export class AllcontractsService {
   }
 
   searchByText(text, filters){
-    alert(text);
     if(filters.length === 0){
       return this.http.get<any>(BASEURL+ 'Contract/' + text);
     }
