@@ -1,16 +1,4 @@
-// export class ContractStatus {
-//     private status: string;
-  
-//     constructor(status: string) {
-//       this.status = status;
-//     }
-  
-//     public get Status(): string {
-//       return this.status;
-//     }
-//   }
-
-  export class ContractStatus {
+export class ContractStatus {
         private status: string;
         private id: number;
       
